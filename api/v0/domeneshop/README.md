@@ -133,10 +133,10 @@ Class | Method | HTTP request | Description
 *DnsApi* | [**ModifyRecord**](docs/DnsApi.md#modifyrecord) | **Put** /domains/{domainId}/dns/{recordId} | Update DNS record by ID
 *DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /domains/{domainId} | Find domain by ID
 *DomainsApi* | [**GetDomains**](docs/DomainsApi.md#getdomains) | **Get** /domains | List domains
-*ForwardsApi* | [**CreateForward**](docs/ForwardsApi.md#createforward) | **Post** /domains/{domainId}/forwards/ | Add forward
+*ForwardsApi* | [**CreateForward**](docs/ForwardsApi.md#createforward) | **Post** /domains/{domainId}/forwards | Add forward
 *ForwardsApi* | [**DeleteForward**](docs/ForwardsApi.md#deleteforward) | **Delete** /domains/{domainId}/forwards/{host} | Delete forward by host
 *ForwardsApi* | [**GetForward**](docs/ForwardsApi.md#getforward) | **Get** /domains/{domainId}/forwards/{host} | Find forward by host
-*ForwardsApi* | [**GetForwards**](docs/ForwardsApi.md#getforwards) | **Get** /domains/{domainId}/forwards/ | List forwards
+*ForwardsApi* | [**GetForwards**](docs/ForwardsApi.md#getforwards) | **Get** /domains/{domainId}/forwards | List forwards
 *ForwardsApi* | [**ModifyForward**](docs/ForwardsApi.md#modifyforward) | **Put** /domains/{domainId}/forwards/{host} | Update forward by host
 *InvoicesApi* | [**GetInvoice**](docs/InvoicesApi.md#getinvoice) | **Get** /invoices/{invoiceId} | Find invoice by invoice number
 *InvoicesApi* | [**GetInvoices**](docs/InvoicesApi.md#getinvoices) | **Get** /invoices | List invoices

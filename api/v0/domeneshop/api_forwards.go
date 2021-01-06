@@ -77,7 +77,7 @@ func (a *ForwardsApiService) CreateForwardExecute(r ApiCreateForwardRequest) (*_
 		return nil, executionError
 	}
 
-	localVarPath := localBasePath + "/domains/{domainId}/forwards/"
+	localVarPath := localBasePath + "/domains/{domainId}/forwards"
 	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -396,7 +396,7 @@ func (a *ForwardsApiService) GetForwardsExecute(r ApiGetForwardsRequest) ([]HTTP
 		return localVarReturnValue, nil, executionError
 	}
 
-	localVarPath := localBasePath + "/domains/{domainId}/forwards/"
+	localVarPath := localBasePath + "/domains/{domainId}/forwards"
 	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

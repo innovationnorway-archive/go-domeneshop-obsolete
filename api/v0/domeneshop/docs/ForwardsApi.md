@@ -4,10 +4,10 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateForward**](ForwardsApi.md#CreateForward) | **Post** /domains/{domainId}/forwards/ | Add forward
+[**CreateForward**](ForwardsApi.md#CreateForward) | **Post** /domains/{domainId}/forwards | Add forward
 [**DeleteForward**](ForwardsApi.md#DeleteForward) | **Delete** /domains/{domainId}/forwards/{host} | Delete forward by host
 [**GetForward**](ForwardsApi.md#GetForward) | **Get** /domains/{domainId}/forwards/{host} | Find forward by host
-[**GetForwards**](ForwardsApi.md#GetForwards) | **Get** /domains/{domainId}/forwards/ | List forwards
+[**GetForwards**](ForwardsApi.md#GetForwards) | **Get** /domains/{domainId}/forwards | List forwards
 [**ModifyForward**](ForwardsApi.md#ModifyForward) | **Put** /domains/{domainId}/forwards/{host} | Update forward by host
 
 

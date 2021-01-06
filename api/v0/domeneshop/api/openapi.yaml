@@ -301,7 +301,7 @@ paths:
       summary: Update DNS record by ID
       tags:
       - dns
-  /domains/{domainId}/forwards/:
+  /domains/{domainId}/forwards:
     get:
       description: List all forwards for the specified domain.
       operationId: getForwards
