@@ -4,14 +4,14 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DomainsDomainIdGet**](DomainsApi.md#DomainsDomainIdGet) | **Get** /domains/{domainId} | Find domain by ID
+[**GetDomain**](DomainsApi.md#GetDomain) | **Get** /domains/{domainId} | Find domain by ID
 [**GetDomains**](DomainsApi.md#GetDomains) | **Get** /domains | List domains
 
 
 
-## DomainsDomainIdGet
+## GetDomain
 
-> Domain DomainsDomainIdGet(ctx, domainId).Execute()
+> Domain GetDomain(ctx, domainId).Execute()
 
 Find domain by ID
 
@@ -32,13 +32,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.DomainsDomainIdGet(context.Background(), domainId).Execute()
+    resp, r, err := api_client.DomainsApi.GetDomain(context.Background(), domainId).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.DomainsDomainIdGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.GetDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DomainsDomainIdGet`: Domain
-    fmt.Fprintf(os.Stdout, "Response from `DomainsApi.DomainsDomainIdGet`: %v\n", resp)
+    // response from `GetDomain`: Domain
+    fmt.Fprintf(os.Stdout, "Response from `DomainsApi.GetDomain`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDomainsDomainIdGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetDomainRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

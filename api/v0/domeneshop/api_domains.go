@@ -28,25 +28,25 @@ var (
 // DomainsApiService DomainsApi service
 type DomainsApiService service
 
-type ApiDomainsDomainIdGetRequest struct {
+type ApiGetDomainRequest struct {
 	ctx _context.Context
 	ApiService *DomainsApiService
 	domainId int32
 }
 
 
-func (r ApiDomainsDomainIdGetRequest) Execute() (Domain, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdGetExecute(r)
+func (r ApiGetDomainRequest) Execute() (Domain, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetDomainExecute(r)
 }
 
 /*
- * DomainsDomainIdGet Find domain by ID
+ * GetDomain Find domain by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
- * @return ApiDomainsDomainIdGetRequest
+ * @return ApiGetDomainRequest
  */
-func (a *DomainsApiService) DomainsDomainIdGet(ctx _context.Context, domainId int32) ApiDomainsDomainIdGetRequest {
-	return ApiDomainsDomainIdGetRequest{
+func (a *DomainsApiService) GetDomain(ctx _context.Context, domainId int32) ApiGetDomainRequest {
+	return ApiGetDomainRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -57,7 +57,7 @@ func (a *DomainsApiService) DomainsDomainIdGet(ctx _context.Context, domainId in
  * Execute executes the request
  * @return Domain
  */
-func (a *DomainsApiService) DomainsDomainIdGetExecute(r ApiDomainsDomainIdGetRequest) (Domain, *_nethttp.Response, GenericOpenAPIError) {
+func (a *DomainsApiService) GetDomainExecute(r ApiGetDomainRequest) (Domain, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *DomainsApiService) DomainsDomainIdGetExecute(r ApiDomainsDomainIdGetReq
 		localVarReturnValue  Domain
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsApiService.DomainsDomainIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsApiService.GetDomain")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError

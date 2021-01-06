@@ -4,13 +4,13 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DyndnsUpdateGet**](DdnsApi.md#DyndnsUpdateGet) | **Get** /dyndns/update | Update
+[**ModifyDynDns**](DdnsApi.md#ModifyDynDns) | **Get** /dyndns/update | Update
 
 
 
-## DyndnsUpdateGet
+## ModifyDynDns
 
-> DyndnsUpdateGet(ctx).Hostname(hostname).Myip(myip).Execute()
+> ModifyDynDns(ctx).Hostname(hostname).Myip(myip).Execute()
 
 Update
 
@@ -34,9 +34,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DdnsApi.DyndnsUpdateGet(context.Background()).Hostname(hostname).Myip(myip).Execute()
+    resp, r, err := api_client.DdnsApi.ModifyDynDns(context.Background()).Hostname(hostname).Myip(myip).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DdnsApi.DyndnsUpdateGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DdnsApi.ModifyDynDns``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -48,7 +48,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDyndnsUpdateGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiModifyDynDnsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

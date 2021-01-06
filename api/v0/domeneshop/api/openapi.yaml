@@ -85,28 +85,6 @@ tags:
   x-displayName: HTTP Forwards
 - name: invoices
   x-displayName: Invoices
-- description: |
-    These are the schema definitions for the different valid DNS record types.
-
-    # A record
-    <SchemaDefinition schemaRef="#/components/schemas/A" />
-
-    # AAAA record
-    <SchemaDefinition schemaRef="#/components/schemas/AAAA" />
-
-    # CNAME record
-    <SchemaDefinition schemaRef="#/components/schemas/CNAME" />
-
-    # MX record
-    <SchemaDefinition schemaRef="#/components/schemas/MX" />
-
-    # SRV record
-    <SchemaDefinition schemaRef="#/components/schemas/SRV" />
-
-    # TXT record
-    <SchemaDefinition schemaRef="#/components/schemas/TXT" />
-  name: dns_record_models
-  x-displayName: DNS record models
 paths:
   /domains:
     get:
@@ -135,6 +113,7 @@ paths:
       - domains
   /domains/{domainId}:
     get:
+      operationId: getDomain
       parameters:
       - description: ID of the domain
         explode: false
@@ -156,7 +135,7 @@ paths:
       - domains
   /domains/{domainId}/dns:
     get:
-      operationId: getDnsRecords
+      operationId: getRecords
       parameters:
       - description: ID of the domain
         explode: false
@@ -197,6 +176,7 @@ paths:
       tags:
       - dns
     post:
+      operationId: createRecord
       parameters:
       - description: ID of the domain
         explode: false
@@ -232,6 +212,7 @@ paths:
       - dns
   /domains/{domainId}/dns/{recordId}:
     delete:
+      operationId: deleteRecord
       parameters:
       - description: ID of the domain
         explode: false
@@ -258,7 +239,7 @@ paths:
       tags:
       - dns
     get:
-      operationId: getRecordById
+      operationId: getRecord
       parameters:
       - description: ID of the domain
         explode: false
@@ -287,6 +268,7 @@ paths:
       tags:
       - dns
     put:
+      operationId: modifyRecord
       parameters:
       - description: ID of the domain
         explode: false
@@ -322,6 +304,7 @@ paths:
   /domains/{domainId}/forwards/:
     get:
       description: List all forwards for the specified domain.
+      operationId: getForwards
       parameters:
       - description: ID of the domain
         explode: false
@@ -349,6 +332,7 @@ paths:
 
         The forward must not collide with any existing forwarding or DNS record
         of types `A`, `AAAA`, `ANAME` or `CNAME`.
+      operationId: createForward
       parameters:
       - description: ID of the domain
         explode: false
@@ -370,6 +354,7 @@ paths:
       - forwards
   /domains/{domainId}/forwards/{host}:
     delete:
+      operationId: deleteForward
       parameters:
       - description: ID of the domain
         explode: false
@@ -397,6 +382,7 @@ paths:
       tags:
       - forwards
     get:
+      operationId: getForward
       parameters:
       - description: ID of the domain
         explode: false
@@ -433,6 +419,7 @@ paths:
 
         The `host` field must not be changed. In that case, delete the
         existing forwarding and recreate it for the new host/subdomain.
+      operationId: modifyForward
       parameters:
       - description: ID of the domain
         explode: false
@@ -479,12 +466,17 @@ paths:
       operationId: getInvoices
       parameters:
       - description: Only return invoices with this status
+        example: paid
         explode: true
         in: query
         name: status
         required: false
         schema:
-          $ref: '#/components/schemas/Invoice/properties/status'
+          enum:
+          - unpaid
+          - paid
+          - settled
+          type: string
         style: form
       responses:
         "200":
@@ -500,7 +492,7 @@ paths:
       - invoices
   /invoices/{invoiceId}:
     get:
-      operationId: findInvoiceByNumber
+      operationId: getInvoice
       parameters:
       - description: An invoice number
         explode: false
@@ -536,6 +528,7 @@ paths:
           ```
           https://{token}:{secret}@api.domeneshop.no/v0/dyndns/update?hostname=example.com&myip=127.0.0.1
           ```
+      operationId: modifyDynDns
       parameters:
       - description: The fully qualified domain (FQDN) to be updated, without trailing
           dot.

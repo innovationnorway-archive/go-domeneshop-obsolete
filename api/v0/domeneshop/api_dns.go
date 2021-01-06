@@ -28,30 +28,30 @@ var (
 // DnsApiService DnsApi service
 type DnsApiService service
 
-type ApiDomainsDomainIdDnsPostRequest struct {
+type ApiCreateRecordRequest struct {
 	ctx _context.Context
 	ApiService *DnsApiService
 	domainId int32
 	dNSRecord *DNSRecord
 }
 
-func (r ApiDomainsDomainIdDnsPostRequest) DNSRecord(dNSRecord DNSRecord) ApiDomainsDomainIdDnsPostRequest {
+func (r ApiCreateRecordRequest) DNSRecord(dNSRecord DNSRecord) ApiCreateRecordRequest {
 	r.dNSRecord = &dNSRecord
 	return r
 }
 
-func (r ApiDomainsDomainIdDnsPostRequest) Execute() (InlineResponse201, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdDnsPostExecute(r)
+func (r ApiCreateRecordRequest) Execute() (InlineResponse201, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.CreateRecordExecute(r)
 }
 
 /*
- * DomainsDomainIdDnsPost Add DNS record
+ * CreateRecord Add DNS record
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
- * @return ApiDomainsDomainIdDnsPostRequest
+ * @return ApiCreateRecordRequest
  */
-func (a *DnsApiService) DomainsDomainIdDnsPost(ctx _context.Context, domainId int32) ApiDomainsDomainIdDnsPostRequest {
-	return ApiDomainsDomainIdDnsPostRequest{
+func (a *DnsApiService) CreateRecord(ctx _context.Context, domainId int32) ApiCreateRecordRequest {
+	return ApiCreateRecordRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -62,7 +62,7 @@ func (a *DnsApiService) DomainsDomainIdDnsPost(ctx _context.Context, domainId in
  * Execute executes the request
  * @return InlineResponse201
  */
-func (a *DnsApiService) DomainsDomainIdDnsPostExecute(r ApiDomainsDomainIdDnsPostRequest) (InlineResponse201, *_nethttp.Response, GenericOpenAPIError) {
+func (a *DnsApiService) CreateRecordExecute(r ApiCreateRecordRequest) (InlineResponse201, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *DnsApiService) DomainsDomainIdDnsPostExecute(r ApiDomainsDomainIdDnsPos
 		localVarReturnValue  InlineResponse201
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.DomainsDomainIdDnsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.CreateRecord")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError
@@ -145,7 +145,7 @@ func (a *DnsApiService) DomainsDomainIdDnsPostExecute(r ApiDomainsDomainIdDnsPos
 	return localVarReturnValue, localVarHTTPResponse, executionError
 }
 
-type ApiDomainsDomainIdDnsRecordIdDeleteRequest struct {
+type ApiDeleteRecordRequest struct {
 	ctx _context.Context
 	ApiService *DnsApiService
 	domainId int32
@@ -153,19 +153,19 @@ type ApiDomainsDomainIdDnsRecordIdDeleteRequest struct {
 }
 
 
-func (r ApiDomainsDomainIdDnsRecordIdDeleteRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdDnsRecordIdDeleteExecute(r)
+func (r ApiDeleteRecordRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.DeleteRecordExecute(r)
 }
 
 /*
- * DomainsDomainIdDnsRecordIdDelete Delete DNS record by ID
+ * DeleteRecord Delete DNS record by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
  * @param recordId ID of DNS record
- * @return ApiDomainsDomainIdDnsRecordIdDeleteRequest
+ * @return ApiDeleteRecordRequest
  */
-func (a *DnsApiService) DomainsDomainIdDnsRecordIdDelete(ctx _context.Context, domainId int32, recordId int32) ApiDomainsDomainIdDnsRecordIdDeleteRequest {
-	return ApiDomainsDomainIdDnsRecordIdDeleteRequest{
+func (a *DnsApiService) DeleteRecord(ctx _context.Context, domainId int32, recordId int32) ApiDeleteRecordRequest {
+	return ApiDeleteRecordRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -176,7 +176,7 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdDelete(ctx _context.Context, d
 /*
  * Execute executes the request
  */
-func (a *DnsApiService) DomainsDomainIdDnsRecordIdDeleteExecute(r ApiDomainsDomainIdDnsRecordIdDeleteRequest) (*_nethttp.Response, GenericOpenAPIError) {
+func (a *DnsApiService) DeleteRecordExecute(r ApiDeleteRecordRequest) (*_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -186,7 +186,7 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdDeleteExecute(r ApiDomainsDoma
 		executionError       GenericOpenAPIError
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.DomainsDomainIdDnsRecordIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.DeleteRecord")
 	if err != nil {
 		executionError.error = err.Error()
 		return nil, executionError
@@ -248,32 +248,27 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdDeleteExecute(r ApiDomainsDoma
 	return localVarHTTPResponse, executionError
 }
 
-type ApiDomainsDomainIdDnsRecordIdPutRequest struct {
+type ApiGetRecordRequest struct {
 	ctx _context.Context
 	ApiService *DnsApiService
 	domainId int32
 	recordId int32
-	dNSRecord *DNSRecord
 }
 
-func (r ApiDomainsDomainIdDnsRecordIdPutRequest) DNSRecord(dNSRecord DNSRecord) ApiDomainsDomainIdDnsRecordIdPutRequest {
-	r.dNSRecord = &dNSRecord
-	return r
-}
 
-func (r ApiDomainsDomainIdDnsRecordIdPutRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdDnsRecordIdPutExecute(r)
+func (r ApiGetRecordRequest) Execute() (DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetRecordExecute(r)
 }
 
 /*
- * DomainsDomainIdDnsRecordIdPut Update DNS record by ID
+ * GetRecord Find DNS record by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
  * @param recordId ID of DNS record
- * @return ApiDomainsDomainIdDnsRecordIdPutRequest
+ * @return ApiGetRecordRequest
  */
-func (a *DnsApiService) DomainsDomainIdDnsRecordIdPut(ctx _context.Context, domainId int32, recordId int32) ApiDomainsDomainIdDnsRecordIdPutRequest {
-	return ApiDomainsDomainIdDnsRecordIdPutRequest{
+func (a *DnsApiService) GetRecord(ctx _context.Context, domainId int32, recordId int32) ApiGetRecordRequest {
+	return ApiGetRecordRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -283,21 +278,23 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdPut(ctx _context.Context, doma
 
 /*
  * Execute executes the request
+ * @return DNSRecord
  */
-func (a *DnsApiService) DomainsDomainIdDnsRecordIdPutExecute(r ApiDomainsDomainIdDnsRecordIdPutRequest) (*_nethttp.Response, GenericOpenAPIError) {
+func (a *DnsApiService) GetRecordExecute(r ApiGetRecordRequest) (DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
 		executionError       GenericOpenAPIError
+		localVarReturnValue  DNSRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.DomainsDomainIdDnsRecordIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.GetRecord")
 	if err != nil {
 		executionError.error = err.Error()
-		return nil, executionError
+		return localVarReturnValue, nil, executionError
 	}
 
 	localVarPath := localBasePath + "/domains/{domainId}/dns/{recordId}"
@@ -309,7 +306,7 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdPutExecute(r ApiDomainsDomainI
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -318,25 +315,23 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdPutExecute(r ApiDomainsDomainI
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.dNSRecord
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		executionError.error = err.Error()
-		return nil, executionError
+		return localVarReturnValue, nil, executionError
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, executionError
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
@@ -344,7 +339,7 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdPutExecute(r ApiDomainsDomainI
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, executionError
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -352,13 +347,22 @@ func (a *DnsApiService) DomainsDomainIdDnsRecordIdPutExecute(r ApiDomainsDomainI
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, executionError
 }
 
-type ApiGetDnsRecordsRequest struct {
+type ApiGetRecordsRequest struct {
 	ctx _context.Context
 	ApiService *DnsApiService
 	domainId int32
@@ -366,27 +370,27 @@ type ApiGetDnsRecordsRequest struct {
 	type_ *string
 }
 
-func (r ApiGetDnsRecordsRequest) Host(host string) ApiGetDnsRecordsRequest {
+func (r ApiGetRecordsRequest) Host(host string) ApiGetRecordsRequest {
 	r.host = &host
 	return r
 }
-func (r ApiGetDnsRecordsRequest) Type_(type_ string) ApiGetDnsRecordsRequest {
+func (r ApiGetRecordsRequest) Type_(type_ string) ApiGetRecordsRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r ApiGetDnsRecordsRequest) Execute() ([]DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.GetDnsRecordsExecute(r)
+func (r ApiGetRecordsRequest) Execute() ([]DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetRecordsExecute(r)
 }
 
 /*
- * GetDnsRecords List DNS records
+ * GetRecords List DNS records
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
- * @return ApiGetDnsRecordsRequest
+ * @return ApiGetRecordsRequest
  */
-func (a *DnsApiService) GetDnsRecords(ctx _context.Context, domainId int32) ApiGetDnsRecordsRequest {
-	return ApiGetDnsRecordsRequest{
+func (a *DnsApiService) GetRecords(ctx _context.Context, domainId int32) ApiGetRecordsRequest {
+	return ApiGetRecordsRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -397,7 +401,7 @@ func (a *DnsApiService) GetDnsRecords(ctx _context.Context, domainId int32) ApiG
  * Execute executes the request
  * @return []DNSRecord
  */
-func (a *DnsApiService) GetDnsRecordsExecute(r ApiGetDnsRecordsRequest) ([]DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
+func (a *DnsApiService) GetRecordsExecute(r ApiGetRecordsRequest) ([]DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -408,7 +412,7 @@ func (a *DnsApiService) GetDnsRecordsExecute(r ApiGetDnsRecordsRequest) ([]DNSRe
 		localVarReturnValue  []DNSRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.GetDnsRecords")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.GetRecords")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError
@@ -484,27 +488,32 @@ func (a *DnsApiService) GetDnsRecordsExecute(r ApiGetDnsRecordsRequest) ([]DNSRe
 	return localVarReturnValue, localVarHTTPResponse, executionError
 }
 
-type ApiGetRecordByIdRequest struct {
+type ApiModifyRecordRequest struct {
 	ctx _context.Context
 	ApiService *DnsApiService
 	domainId int32
 	recordId int32
+	dNSRecord *DNSRecord
 }
 
+func (r ApiModifyRecordRequest) DNSRecord(dNSRecord DNSRecord) ApiModifyRecordRequest {
+	r.dNSRecord = &dNSRecord
+	return r
+}
 
-func (r ApiGetRecordByIdRequest) Execute() (DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.GetRecordByIdExecute(r)
+func (r ApiModifyRecordRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.ModifyRecordExecute(r)
 }
 
 /*
- * GetRecordById Find DNS record by ID
+ * ModifyRecord Update DNS record by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
  * @param recordId ID of DNS record
- * @return ApiGetRecordByIdRequest
+ * @return ApiModifyRecordRequest
  */
-func (a *DnsApiService) GetRecordById(ctx _context.Context, domainId int32, recordId int32) ApiGetRecordByIdRequest {
-	return ApiGetRecordByIdRequest{
+func (a *DnsApiService) ModifyRecord(ctx _context.Context, domainId int32, recordId int32) ApiModifyRecordRequest {
+	return ApiModifyRecordRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -514,23 +523,21 @@ func (a *DnsApiService) GetRecordById(ctx _context.Context, domainId int32, reco
 
 /*
  * Execute executes the request
- * @return DNSRecord
  */
-func (a *DnsApiService) GetRecordByIdExecute(r ApiGetRecordByIdRequest) (DNSRecord, *_nethttp.Response, GenericOpenAPIError) {
+func (a *DnsApiService) ModifyRecordExecute(r ApiModifyRecordRequest) (*_nethttp.Response, GenericOpenAPIError) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
 		executionError       GenericOpenAPIError
-		localVarReturnValue  DNSRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.GetRecordById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsApiService.ModifyRecord")
 	if err != nil {
 		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return nil, executionError
 	}
 
 	localVarPath := localBasePath + "/domains/{domainId}/dns/{recordId}"
@@ -542,7 +549,7 @@ func (a *DnsApiService) GetRecordByIdExecute(r ApiGetRecordByIdRequest) (DNSReco
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -551,23 +558,25 @@ func (a *DnsApiService) GetRecordByIdExecute(r ApiGetRecordByIdRequest) (DNSReco
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.dNSRecord
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return nil, executionError
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarHTTPResponse, executionError
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
@@ -575,7 +584,7 @@ func (a *DnsApiService) GetRecordByIdExecute(r ApiGetRecordByIdRequest) (DNSReco
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarHTTPResponse, executionError
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -583,17 +592,8 @@ func (a *DnsApiService) GetRecordByIdExecute(r ApiGetRecordByIdRequest) (DNSReco
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarHTTPResponse, executionError
 }

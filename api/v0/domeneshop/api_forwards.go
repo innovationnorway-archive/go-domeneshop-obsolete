@@ -28,26 +28,347 @@ var (
 // ForwardsApiService ForwardsApi service
 type ForwardsApiService service
 
-type ApiDomainsDomainIdForwardsGetRequest struct {
+type ApiCreateForwardRequest struct {
 	ctx _context.Context
 	ApiService *ForwardsApiService
 	domainId int32
 }
 
 
-func (r ApiDomainsDomainIdForwardsGetRequest) Execute() ([]HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdForwardsGetExecute(r)
+func (r ApiCreateForwardRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.CreateForwardExecute(r)
 }
 
 /*
- * DomainsDomainIdForwardsGet List forwards
+ * CreateForward Add forward
+ * Create a forwarding for the specified domain, to a given URL.
+
+The forward must not collide with any existing forwarding or DNS record
+of types `A`, `AAAA`, `ANAME` or `CNAME`.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param domainId ID of the domain
+ * @return ApiCreateForwardRequest
+ */
+func (a *ForwardsApiService) CreateForward(ctx _context.Context, domainId int32) ApiCreateForwardRequest {
+	return ApiCreateForwardRequest{
+		ApiService: a,
+		ctx: ctx,
+		domainId: domainId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *ForwardsApiService) CreateForwardExecute(r ApiCreateForwardRequest) (*_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.CreateForward")
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarPath := localBasePath + "/domains/{domainId}/forwards/"
+	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, executionError
+}
+
+type ApiDeleteForwardRequest struct {
+	ctx _context.Context
+	ApiService *ForwardsApiService
+	domainId int32
+	host string
+}
+
+
+func (r ApiDeleteForwardRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.DeleteForwardExecute(r)
+}
+
+/*
+ * DeleteForward Delete forward by host
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param domainId ID of the domain
+ * @param host Subdomain of the forward, `@` for the root domain
+ * @return ApiDeleteForwardRequest
+ */
+func (a *ForwardsApiService) DeleteForward(ctx _context.Context, domainId int32, host string) ApiDeleteForwardRequest {
+	return ApiDeleteForwardRequest{
+		ApiService: a,
+		ctx: ctx,
+		domainId: domainId,
+		host: host,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *ForwardsApiService) DeleteForwardExecute(r ApiDeleteForwardRequest) (*_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DeleteForward")
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarPath := localBasePath + "/domains/{domainId}/forwards/{host}"
+	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host"+"}", _neturl.PathEscape(parameterToString(r.host, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, executionError
+}
+
+type ApiGetForwardRequest struct {
+	ctx _context.Context
+	ApiService *ForwardsApiService
+	domainId int32
+	host string
+}
+
+
+func (r ApiGetForwardRequest) Execute() (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetForwardExecute(r)
+}
+
+/*
+ * GetForward Find forward by host
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param domainId ID of the domain
+ * @param host Subdomain of the forward, `@` for the root domain
+ * @return ApiGetForwardRequest
+ */
+func (a *ForwardsApiService) GetForward(ctx _context.Context, domainId int32, host string) ApiGetForwardRequest {
+	return ApiGetForwardRequest{
+		ApiService: a,
+		ctx: ctx,
+		domainId: domainId,
+		host: host,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HTTPForward
+ */
+func (a *ForwardsApiService) GetForwardExecute(r ApiGetForwardRequest) (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+		localVarReturnValue  HTTPForward
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.GetForward")
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarPath := localBasePath + "/domains/{domainId}/forwards/{host}"
+	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host"+"}", _neturl.PathEscape(parameterToString(r.host, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, executionError
+}
+
+type ApiGetForwardsRequest struct {
+	ctx _context.Context
+	ApiService *ForwardsApiService
+	domainId int32
+}
+
+
+func (r ApiGetForwardsRequest) Execute() ([]HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetForwardsExecute(r)
+}
+
+/*
+ * GetForwards List forwards
  * List all forwards for the specified domain.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
- * @return ApiDomainsDomainIdForwardsGetRequest
+ * @return ApiGetForwardsRequest
  */
-func (a *ForwardsApiService) DomainsDomainIdForwardsGet(ctx _context.Context, domainId int32) ApiDomainsDomainIdForwardsGetRequest {
-	return ApiDomainsDomainIdForwardsGetRequest{
+func (a *ForwardsApiService) GetForwards(ctx _context.Context, domainId int32) ApiGetForwardsRequest {
+	return ApiGetForwardsRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -58,7 +379,7 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsGet(ctx _context.Context, do
  * Execute executes the request
  * @return []HTTPForward
  */
-func (a *ForwardsApiService) DomainsDomainIdForwardsGetExecute(r ApiDomainsDomainIdForwardsGetRequest) ([]HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+func (a *ForwardsApiService) GetForwardsExecute(r ApiGetForwardsRequest) ([]HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -69,7 +390,7 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsGetExecute(r ApiDomainsDomai
 		localVarReturnValue  []HTTPForward
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DomainsDomainIdForwardsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.GetForwards")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError
@@ -139,224 +460,7 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsGetExecute(r ApiDomainsDomai
 	return localVarReturnValue, localVarHTTPResponse, executionError
 }
 
-type ApiDomainsDomainIdForwardsHostDeleteRequest struct {
-	ctx _context.Context
-	ApiService *ForwardsApiService
-	domainId int32
-	host string
-}
-
-
-func (r ApiDomainsDomainIdForwardsHostDeleteRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdForwardsHostDeleteExecute(r)
-}
-
-/*
- * DomainsDomainIdForwardsHostDelete Delete forward by host
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param domainId ID of the domain
- * @param host Subdomain of the forward, `@` for the root domain
- * @return ApiDomainsDomainIdForwardsHostDeleteRequest
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostDelete(ctx _context.Context, domainId int32, host string) ApiDomainsDomainIdForwardsHostDeleteRequest {
-	return ApiDomainsDomainIdForwardsHostDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		domainId: domainId,
-		host: host,
-	}
-}
-
-/*
- * Execute executes the request
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostDeleteExecute(r ApiDomainsDomainIdForwardsHostDeleteRequest) (*_nethttp.Response, GenericOpenAPIError) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DomainsDomainIdForwardsHostDelete")
-	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
-	}
-
-	localVarPath := localBasePath + "/domains/{domainId}/forwards/{host}"
-	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"host"+"}", _neturl.PathEscape(parameterToString(r.host, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, executionError
-}
-
-type ApiDomainsDomainIdForwardsHostGetRequest struct {
-	ctx _context.Context
-	ApiService *ForwardsApiService
-	domainId int32
-	host string
-}
-
-
-func (r ApiDomainsDomainIdForwardsHostGetRequest) Execute() (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdForwardsHostGetExecute(r)
-}
-
-/*
- * DomainsDomainIdForwardsHostGet Find forward by host
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param domainId ID of the domain
- * @param host Subdomain of the forward, `@` for the root domain
- * @return ApiDomainsDomainIdForwardsHostGetRequest
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostGet(ctx _context.Context, domainId int32, host string) ApiDomainsDomainIdForwardsHostGetRequest {
-	return ApiDomainsDomainIdForwardsHostGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		domainId: domainId,
-		host: host,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HTTPForward
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostGetExecute(r ApiDomainsDomainIdForwardsHostGetRequest) (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-		localVarReturnValue  HTTPForward
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DomainsDomainIdForwardsHostGet")
-	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
-	}
-
-	localVarPath := localBasePath + "/domains/{domainId}/forwards/{host}"
-	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"host"+"}", _neturl.PathEscape(parameterToString(r.host, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, executionError
-}
-
-type ApiDomainsDomainIdForwardsHostPutRequest struct {
+type ApiModifyForwardRequest struct {
 	ctx _context.Context
 	ApiService *ForwardsApiService
 	domainId int32
@@ -364,17 +468,17 @@ type ApiDomainsDomainIdForwardsHostPutRequest struct {
 	hTTPForward *HTTPForward
 }
 
-func (r ApiDomainsDomainIdForwardsHostPutRequest) HTTPForward(hTTPForward HTTPForward) ApiDomainsDomainIdForwardsHostPutRequest {
+func (r ApiModifyForwardRequest) HTTPForward(hTTPForward HTTPForward) ApiModifyForwardRequest {
 	r.hTTPForward = &hTTPForward
 	return r
 }
 
-func (r ApiDomainsDomainIdForwardsHostPutRequest) Execute() (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdForwardsHostPutExecute(r)
+func (r ApiModifyForwardRequest) Execute() (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.ModifyForwardExecute(r)
 }
 
 /*
- * DomainsDomainIdForwardsHostPut Update forward by host
+ * ModifyForward Update forward by host
  * Update a forwarding for the specified domain, to a given URL.
 
 The `host` field must not be changed. In that case, delete the
@@ -383,10 +487,10 @@ existing forwarding and recreate it for the new host/subdomain.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param domainId ID of the domain
  * @param host Subdomain of the forward, `@` for the root domain
- * @return ApiDomainsDomainIdForwardsHostPutRequest
+ * @return ApiModifyForwardRequest
  */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostPut(ctx _context.Context, domainId int32, host string) ApiDomainsDomainIdForwardsHostPutRequest {
-	return ApiDomainsDomainIdForwardsHostPutRequest{
+func (a *ForwardsApiService) ModifyForward(ctx _context.Context, domainId int32, host string) ApiModifyForwardRequest {
+	return ApiModifyForwardRequest{
 		ApiService: a,
 		ctx: ctx,
 		domainId: domainId,
@@ -398,7 +502,7 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsHostPut(ctx _context.Context
  * Execute executes the request
  * @return HTTPForward
  */
-func (a *ForwardsApiService) DomainsDomainIdForwardsHostPutExecute(r ApiDomainsDomainIdForwardsHostPutRequest) (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
+func (a *ForwardsApiService) ModifyForwardExecute(r ApiModifyForwardRequest) (HTTPForward, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -409,7 +513,7 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsHostPutExecute(r ApiDomainsD
 		localVarReturnValue  HTTPForward
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DomainsDomainIdForwardsHostPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.ModifyForward")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError
@@ -480,108 +584,4 @@ func (a *ForwardsApiService) DomainsDomainIdForwardsHostPutExecute(r ApiDomainsD
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, executionError
-}
-
-type ApiDomainsDomainIdForwardsPostRequest struct {
-	ctx _context.Context
-	ApiService *ForwardsApiService
-	domainId int32
-}
-
-
-func (r ApiDomainsDomainIdForwardsPostRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DomainsDomainIdForwardsPostExecute(r)
-}
-
-/*
- * DomainsDomainIdForwardsPost Add forward
- * Create a forwarding for the specified domain, to a given URL.
-
-The forward must not collide with any existing forwarding or DNS record
-of types `A`, `AAAA`, `ANAME` or `CNAME`.
-
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param domainId ID of the domain
- * @return ApiDomainsDomainIdForwardsPostRequest
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsPost(ctx _context.Context, domainId int32) ApiDomainsDomainIdForwardsPostRequest {
-	return ApiDomainsDomainIdForwardsPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		domainId: domainId,
-	}
-}
-
-/*
- * Execute executes the request
- */
-func (a *ForwardsApiService) DomainsDomainIdForwardsPostExecute(r ApiDomainsDomainIdForwardsPostRequest) (*_nethttp.Response, GenericOpenAPIError) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardsApiService.DomainsDomainIdForwardsPost")
-	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
-	}
-
-	localVarPath := localBasePath + "/domains/{domainId}/forwards/"
-	localVarPath = strings.Replace(localVarPath, "{"+"domainId"+"}", _neturl.PathEscape(parameterToString(r.domainId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, executionError
 }

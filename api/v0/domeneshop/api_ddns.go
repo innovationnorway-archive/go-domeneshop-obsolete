@@ -27,28 +27,28 @@ var (
 // DdnsApiService DdnsApi service
 type DdnsApiService service
 
-type ApiDyndnsUpdateGetRequest struct {
+type ApiModifyDynDnsRequest struct {
 	ctx _context.Context
 	ApiService *DdnsApiService
 	hostname *string
 	myip *string
 }
 
-func (r ApiDyndnsUpdateGetRequest) Hostname(hostname string) ApiDyndnsUpdateGetRequest {
+func (r ApiModifyDynDnsRequest) Hostname(hostname string) ApiModifyDynDnsRequest {
 	r.hostname = &hostname
 	return r
 }
-func (r ApiDyndnsUpdateGetRequest) Myip(myip string) ApiDyndnsUpdateGetRequest {
+func (r ApiModifyDynDnsRequest) Myip(myip string) ApiModifyDynDnsRequest {
 	r.myip = &myip
 	return r
 }
 
-func (r ApiDyndnsUpdateGetRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.DyndnsUpdateGetExecute(r)
+func (r ApiModifyDynDnsRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.ModifyDynDnsExecute(r)
 }
 
 /*
- * DyndnsUpdateGet Update
+ * ModifyDynDns Update
  * Update DNS using the "IP update protocol".
 
 A DNS record for the given hostname will be created if it does not exist, or updated if it does. The record
@@ -62,10 +62,10 @@ in the URL:
   ```
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiDyndnsUpdateGetRequest
+ * @return ApiModifyDynDnsRequest
  */
-func (a *DdnsApiService) DyndnsUpdateGet(ctx _context.Context) ApiDyndnsUpdateGetRequest {
-	return ApiDyndnsUpdateGetRequest{
+func (a *DdnsApiService) ModifyDynDns(ctx _context.Context) ApiModifyDynDnsRequest {
+	return ApiModifyDynDnsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -74,7 +74,7 @@ func (a *DdnsApiService) DyndnsUpdateGet(ctx _context.Context) ApiDyndnsUpdateGe
 /*
  * Execute executes the request
  */
-func (a *DdnsApiService) DyndnsUpdateGetExecute(r ApiDyndnsUpdateGetRequest) (*_nethttp.Response, GenericOpenAPIError) {
+func (a *DdnsApiService) ModifyDynDnsExecute(r ApiModifyDynDnsRequest) (*_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -84,7 +84,7 @@ func (a *DdnsApiService) DyndnsUpdateGetExecute(r ApiDyndnsUpdateGetRequest) (*_
 		executionError       GenericOpenAPIError
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DdnsApiService.DyndnsUpdateGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DdnsApiService.ModifyDynDns")
 	if err != nil {
 		executionError.error = err.Error()
 		return nil, executionError

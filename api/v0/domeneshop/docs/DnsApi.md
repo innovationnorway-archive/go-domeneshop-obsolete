@@ -4,17 +4,17 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DomainsDomainIdDnsPost**](DnsApi.md#DomainsDomainIdDnsPost) | **Post** /domains/{domainId}/dns | Add DNS record
-[**DomainsDomainIdDnsRecordIdDelete**](DnsApi.md#DomainsDomainIdDnsRecordIdDelete) | **Delete** /domains/{domainId}/dns/{recordId} | Delete DNS record by ID
-[**DomainsDomainIdDnsRecordIdPut**](DnsApi.md#DomainsDomainIdDnsRecordIdPut) | **Put** /domains/{domainId}/dns/{recordId} | Update DNS record by ID
-[**GetDnsRecords**](DnsApi.md#GetDnsRecords) | **Get** /domains/{domainId}/dns | List DNS records
-[**GetRecordById**](DnsApi.md#GetRecordById) | **Get** /domains/{domainId}/dns/{recordId} | Find DNS record by ID
+[**CreateRecord**](DnsApi.md#CreateRecord) | **Post** /domains/{domainId}/dns | Add DNS record
+[**DeleteRecord**](DnsApi.md#DeleteRecord) | **Delete** /domains/{domainId}/dns/{recordId} | Delete DNS record by ID
+[**GetRecord**](DnsApi.md#GetRecord) | **Get** /domains/{domainId}/dns/{recordId} | Find DNS record by ID
+[**GetRecords**](DnsApi.md#GetRecords) | **Get** /domains/{domainId}/dns | List DNS records
+[**ModifyRecord**](DnsApi.md#ModifyRecord) | **Put** /domains/{domainId}/dns/{recordId} | Update DNS record by ID
 
 
 
-## DomainsDomainIdDnsPost
+## CreateRecord
 
-> InlineResponse201 DomainsDomainIdDnsPost(ctx, domainId).DNSRecord(dNSRecord).Execute()
+> InlineResponse201 CreateRecord(ctx, domainId).DNSRecord(dNSRecord).Execute()
 
 Add DNS record
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DnsApi.DomainsDomainIdDnsPost(context.Background(), domainId).DNSRecord(dNSRecord).Execute()
+    resp, r, err := api_client.DnsApi.CreateRecord(context.Background(), domainId).DNSRecord(dNSRecord).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.DomainsDomainIdDnsPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.CreateRecord``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DomainsDomainIdDnsPost`: InlineResponse201
-    fmt.Fprintf(os.Stdout, "Response from `DnsApi.DomainsDomainIdDnsPost`: %v\n", resp)
+    // response from `CreateRecord`: InlineResponse201
+    fmt.Fprintf(os.Stdout, "Response from `DnsApi.CreateRecord`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDomainsDomainIdDnsPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRecordRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DomainsDomainIdDnsRecordIdDelete
+## DeleteRecord
 
-> DomainsDomainIdDnsRecordIdDelete(ctx, domainId, recordId).Execute()
+> DeleteRecord(ctx, domainId, recordId).Execute()
 
 Delete DNS record by ID
 
@@ -106,9 +106,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DnsApi.DomainsDomainIdDnsRecordIdDelete(context.Background(), domainId, recordId).Execute()
+    resp, r, err := api_client.DnsApi.DeleteRecord(context.Background(), domainId, recordId).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.DomainsDomainIdDnsRecordIdDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.DeleteRecord``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDomainsDomainIdDnsRecordIdDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRecordRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -151,11 +151,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DomainsDomainIdDnsRecordIdPut
+## GetRecord
 
-> DomainsDomainIdDnsRecordIdPut(ctx, domainId, recordId).DNSRecord(dNSRecord).Execute()
+> DNSRecord GetRecord(ctx, domainId, recordId).Execute()
 
-Update DNS record by ID
+Find DNS record by ID
 
 ### Example
 
@@ -172,15 +172,16 @@ import (
 func main() {
     domainId := int32(56) // int32 | ID of the domain
     recordId := int32(56) // int32 | ID of DNS record
-    dNSRecord := openapiclient.DNSRecord{A: openapiclient.NewA(int32(1), "@", "Type_example", "Data_example")} // DNSRecord |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DnsApi.DomainsDomainIdDnsRecordIdPut(context.Background(), domainId, recordId).DNSRecord(dNSRecord).Execute()
+    resp, r, err := api_client.DnsApi.GetRecord(context.Background(), domainId, recordId).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.DomainsDomainIdDnsRecordIdPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.GetRecord``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `GetRecord`: DNSRecord
+    fmt.Fprintf(os.Stdout, "Response from `DnsApi.GetRecord`: %v\n", resp)
 }
 ```
 
@@ -195,18 +196,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDomainsDomainIdDnsRecordIdPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRecordRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **dNSRecord** | [**DNSRecord**](DNSRecord.md) |  | 
 
 ### Return type
 
- (empty response body)
+[**DNSRecord**](DNSRecord.md)
 
 ### Authorization
 
@@ -214,17 +214,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## GetDnsRecords
+## GetRecords
 
-> []DNSRecord GetDnsRecords(ctx, domainId).Host(host).Type_(type_).Execute()
+> []DNSRecord GetRecords(ctx, domainId).Host(host).Type_(type_).Execute()
 
 List DNS records
 
@@ -247,13 +247,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DnsApi.GetDnsRecords(context.Background(), domainId).Host(host).Type_(type_).Execute()
+    resp, r, err := api_client.DnsApi.GetRecords(context.Background(), domainId).Host(host).Type_(type_).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.GetDnsRecords``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.GetRecords``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDnsRecords`: []DNSRecord
-    fmt.Fprintf(os.Stdout, "Response from `DnsApi.GetDnsRecords`: %v\n", resp)
+    // response from `GetRecords`: []DNSRecord
+    fmt.Fprintf(os.Stdout, "Response from `DnsApi.GetRecords`: %v\n", resp)
 }
 ```
 
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetDnsRecordsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRecordsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -294,11 +294,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetRecordById
+## ModifyRecord
 
-> DNSRecord GetRecordById(ctx, domainId, recordId).Execute()
+> ModifyRecord(ctx, domainId, recordId).DNSRecord(dNSRecord).Execute()
 
-Find DNS record by ID
+Update DNS record by ID
 
 ### Example
 
@@ -315,16 +315,15 @@ import (
 func main() {
     domainId := int32(56) // int32 | ID of the domain
     recordId := int32(56) // int32 | ID of DNS record
+    dNSRecord := openapiclient.DNSRecord{A: openapiclient.NewA(int32(1), "@", "Type_example", "Data_example")} // DNSRecord |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DnsApi.GetRecordById(context.Background(), domainId, recordId).Execute()
+    resp, r, err := api_client.DnsApi.ModifyRecord(context.Background(), domainId, recordId).DNSRecord(dNSRecord).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.GetRecordById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsApi.ModifyRecord``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetRecordById`: DNSRecord
-    fmt.Fprintf(os.Stdout, "Response from `DnsApi.GetRecordById`: %v\n", resp)
 }
 ```
 
@@ -339,17 +338,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetRecordByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiModifyRecordRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **dNSRecord** | [**DNSRecord**](DNSRecord.md) |  | 
 
 ### Return type
 
-[**DNSRecord**](DNSRecord.md)
+ (empty response body)
 
 ### Authorization
 
@@ -357,8 +357,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
