@@ -28,25 +28,25 @@ var (
 // InvoicesApiService InvoicesApi service
 type InvoicesApiService service
 
-type ApiFindInvoiceByNumberRequest struct {
+type ApiGetInvoiceRequest struct {
 	ctx _context.Context
 	ApiService *InvoicesApiService
 	invoiceId int32
 }
 
 
-func (r ApiFindInvoiceByNumberRequest) Execute() (Invoice, *_nethttp.Response, GenericOpenAPIError) {
-	return r.ApiService.FindInvoiceByNumberExecute(r)
+func (r ApiGetInvoiceRequest) Execute() (Invoice, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetInvoiceExecute(r)
 }
 
 /*
- * FindInvoiceByNumber Find invoice by invoice number
+ * GetInvoice Find invoice by invoice number
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param invoiceId An invoice number
- * @return ApiFindInvoiceByNumberRequest
+ * @return ApiGetInvoiceRequest
  */
-func (a *InvoicesApiService) FindInvoiceByNumber(ctx _context.Context, invoiceId int32) ApiFindInvoiceByNumberRequest {
-	return ApiFindInvoiceByNumberRequest{
+func (a *InvoicesApiService) GetInvoice(ctx _context.Context, invoiceId int32) ApiGetInvoiceRequest {
+	return ApiGetInvoiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		invoiceId: invoiceId,
@@ -57,7 +57,7 @@ func (a *InvoicesApiService) FindInvoiceByNumber(ctx _context.Context, invoiceId
  * Execute executes the request
  * @return Invoice
  */
-func (a *InvoicesApiService) FindInvoiceByNumberExecute(r ApiFindInvoiceByNumberRequest) (Invoice, *_nethttp.Response, GenericOpenAPIError) {
+func (a *InvoicesApiService) GetInvoiceExecute(r ApiGetInvoiceRequest) (Invoice, *_nethttp.Response, GenericOpenAPIError) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *InvoicesApiService) FindInvoiceByNumberExecute(r ApiFindInvoiceByNumber
 		localVarReturnValue  Invoice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.FindInvoiceByNumber")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoicesApiService.GetInvoice")
 	if err != nil {
 		executionError.error = err.Error()
 		return localVarReturnValue, nil, executionError
@@ -141,10 +141,10 @@ func (a *InvoicesApiService) FindInvoiceByNumberExecute(r ApiFindInvoiceByNumber
 type ApiGetInvoicesRequest struct {
 	ctx _context.Context
 	ApiService *InvoicesApiService
-	status *Status
+	status *string
 }
 
-func (r ApiGetInvoicesRequest) Status(status Status) ApiGetInvoicesRequest {
+func (r ApiGetInvoicesRequest) Status(status string) ApiGetInvoicesRequest {
 	r.status = &status
 	return r
 }

@@ -4,14 +4,14 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FindInvoiceByNumber**](InvoicesApi.md#FindInvoiceByNumber) | **Get** /invoices/{invoiceId} | Find invoice by invoice number
+[**GetInvoice**](InvoicesApi.md#GetInvoice) | **Get** /invoices/{invoiceId} | Find invoice by invoice number
 [**GetInvoices**](InvoicesApi.md#GetInvoices) | **Get** /invoices | List invoices
 
 
 
-## FindInvoiceByNumber
+## GetInvoice
 
-> Invoice FindInvoiceByNumber(ctx, invoiceId).Execute()
+> Invoice GetInvoice(ctx, invoiceId).Execute()
 
 Find invoice by invoice number
 
@@ -32,13 +32,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoicesApi.FindInvoiceByNumber(context.Background(), invoiceId).Execute()
+    resp, r, err := api_client.InvoicesApi.GetInvoice(context.Background(), invoiceId).Execute()
     if err.Error() != "" {
-        fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.FindInvoiceByNumber``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.GetInvoice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindInvoiceByNumber`: Invoice
-    fmt.Fprintf(os.Stdout, "Response from `InvoicesApi.FindInvoiceByNumber`: %v\n", resp)
+    // response from `GetInvoice`: Invoice
+    fmt.Fprintf(os.Stdout, "Response from `InvoicesApi.GetInvoice`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFindInvoiceByNumberRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetInvoiceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-    status := TODO // Status | Only return invoices with this status (optional)
+    status := "paid" // string | Only return invoices with this status (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ Other parameters are passed through a pointer to a apiGetInvoicesRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**Status**](Status.md) | Only return invoices with this status | 
+ **status** | **string** | Only return invoices with this status | 
 
 ### Return type
 

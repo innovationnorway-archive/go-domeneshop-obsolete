@@ -125,20 +125,20 @@ All URIs are relative to *https://api.domeneshop.no/v0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DdnsApi* | [**DyndnsUpdateGet**](docs/DdnsApi.md#dyndnsupdateget) | **Get** /dyndns/update | Update
-*DnsApi* | [**DomainsDomainIdDnsPost**](docs/DnsApi.md#domainsdomainiddnspost) | **Post** /domains/{domainId}/dns | Add DNS record
-*DnsApi* | [**DomainsDomainIdDnsRecordIdDelete**](docs/DnsApi.md#domainsdomainiddnsrecordiddelete) | **Delete** /domains/{domainId}/dns/{recordId} | Delete DNS record by ID
-*DnsApi* | [**DomainsDomainIdDnsRecordIdPut**](docs/DnsApi.md#domainsdomainiddnsrecordidput) | **Put** /domains/{domainId}/dns/{recordId} | Update DNS record by ID
-*DnsApi* | [**GetDnsRecords**](docs/DnsApi.md#getdnsrecords) | **Get** /domains/{domainId}/dns | List DNS records
-*DnsApi* | [**GetRecordById**](docs/DnsApi.md#getrecordbyid) | **Get** /domains/{domainId}/dns/{recordId} | Find DNS record by ID
-*DomainsApi* | [**DomainsDomainIdGet**](docs/DomainsApi.md#domainsdomainidget) | **Get** /domains/{domainId} | Find domain by ID
+*DdnsApi* | [**ModifyDynDns**](docs/DdnsApi.md#modifydyndns) | **Get** /dyndns/update | Update
+*DnsApi* | [**CreateRecord**](docs/DnsApi.md#createrecord) | **Post** /domains/{domainId}/dns | Add DNS record
+*DnsApi* | [**DeleteRecord**](docs/DnsApi.md#deleterecord) | **Delete** /domains/{domainId}/dns/{recordId} | Delete DNS record by ID
+*DnsApi* | [**GetRecord**](docs/DnsApi.md#getrecord) | **Get** /domains/{domainId}/dns/{recordId} | Find DNS record by ID
+*DnsApi* | [**GetRecords**](docs/DnsApi.md#getrecords) | **Get** /domains/{domainId}/dns | List DNS records
+*DnsApi* | [**ModifyRecord**](docs/DnsApi.md#modifyrecord) | **Put** /domains/{domainId}/dns/{recordId} | Update DNS record by ID
+*DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /domains/{domainId} | Find domain by ID
 *DomainsApi* | [**GetDomains**](docs/DomainsApi.md#getdomains) | **Get** /domains | List domains
-*ForwardsApi* | [**DomainsDomainIdForwardsGet**](docs/ForwardsApi.md#domainsdomainidforwardsget) | **Get** /domains/{domainId}/forwards/ | List forwards
-*ForwardsApi* | [**DomainsDomainIdForwardsHostDelete**](docs/ForwardsApi.md#domainsdomainidforwardshostdelete) | **Delete** /domains/{domainId}/forwards/{host} | Delete forward by host
-*ForwardsApi* | [**DomainsDomainIdForwardsHostGet**](docs/ForwardsApi.md#domainsdomainidforwardshostget) | **Get** /domains/{domainId}/forwards/{host} | Find forward by host
-*ForwardsApi* | [**DomainsDomainIdForwardsHostPut**](docs/ForwardsApi.md#domainsdomainidforwardshostput) | **Put** /domains/{domainId}/forwards/{host} | Update forward by host
-*ForwardsApi* | [**DomainsDomainIdForwardsPost**](docs/ForwardsApi.md#domainsdomainidforwardspost) | **Post** /domains/{domainId}/forwards/ | Add forward
-*InvoicesApi* | [**FindInvoiceByNumber**](docs/InvoicesApi.md#findinvoicebynumber) | **Get** /invoices/{invoiceId} | Find invoice by invoice number
+*ForwardsApi* | [**CreateForward**](docs/ForwardsApi.md#createforward) | **Post** /domains/{domainId}/forwards | Add forward
+*ForwardsApi* | [**DeleteForward**](docs/ForwardsApi.md#deleteforward) | **Delete** /domains/{domainId}/forwards/{host} | Delete forward by host
+*ForwardsApi* | [**GetForward**](docs/ForwardsApi.md#getforward) | **Get** /domains/{domainId}/forwards/{host} | Find forward by host
+*ForwardsApi* | [**GetForwards**](docs/ForwardsApi.md#getforwards) | **Get** /domains/{domainId}/forwards | List forwards
+*ForwardsApi* | [**ModifyForward**](docs/ForwardsApi.md#modifyforward) | **Put** /domains/{domainId}/forwards/{host} | Update forward by host
+*InvoicesApi* | [**GetInvoice**](docs/InvoicesApi.md#getinvoice) | **Get** /invoices/{invoiceId} | Find invoice by invoice number
 *InvoicesApi* | [**GetInvoices**](docs/InvoicesApi.md#getinvoices) | **Get** /invoices | List invoices
 
 
