@@ -729,6 +729,15 @@ components:
       - $ref: '#/components/schemas/BaseRecord'
       - $ref: '#/components/schemas/CNAME_allOf'
     DNSRecord:
+      discriminator:
+        mapping:
+          A: '#/components/schemas/A'
+          AAAA: '#/components/schemas/AAAA'
+          CNAME: '#/components/schemas/CNAME'
+          MX: '#/components/schemas/MX'
+          SRV: '#/components/schemas/SRV'
+          TXT: '#/components/schemas/TXT'
+        propertyName: type
       oneOf:
       - $ref: '#/components/schemas/A'
       - $ref: '#/components/schemas/AAAA'
