@@ -25,5 +25,5 @@ $ npm install -g @openapitools/openapi-generator-cli
 Generate API client:
 
 ```
-$ openapi-generator-cli generate -g go -i openapi.yaml -o api/v0/domeneshop --package-name=domeneshop
+$ openapi-generator-cli generate -g go -i openapi.yaml -o api/v0/domeneshop --package-name=domeneshop -p useOneOfDiscriminatorLookup=true
 ```

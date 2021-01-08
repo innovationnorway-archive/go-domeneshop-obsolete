@@ -60,100 +60,86 @@ func TXTAsDNSRecord(v *TXT) DNSRecord {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into A
-	err = json.Unmarshal(data, &dst.A)
-	if err == nil {
-		jsonA, _ := json.Marshal(dst.A)
-		if string(jsonA) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = json.Unmarshal(data, &jsonDict)
+	if err != nil {
+		return fmt.Errorf("Failed to unmarshal JSON into map for the discrimintor lookup.")
+	}
+
+	// check if the discriminator value is 'A'
+	if jsonDict["type"] == "A" {
+		// try to unmarshal JSON data into A
+		err = json.Unmarshal(data, &dst.A)
+		if err == nil {
+			return nil // data stored in dst.A, return on the first match
+		} else {
 			dst.A = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as A: %s", err.Error())
 		}
-	} else {
-		dst.A = nil
 	}
 
-	// try to unmarshal data into AAAA
-	err = json.Unmarshal(data, &dst.AAAA)
-	if err == nil {
-		jsonAAAA, _ := json.Marshal(dst.AAAA)
-		if string(jsonAAAA) == "{}" { // empty struct
+	// check if the discriminator value is 'AAAA'
+	if jsonDict["type"] == "AAAA" {
+		// try to unmarshal JSON data into AAAA
+		err = json.Unmarshal(data, &dst.AAAA)
+		if err == nil {
+			return nil // data stored in dst.AAAA, return on the first match
+		} else {
 			dst.AAAA = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as AAAA: %s", err.Error())
 		}
-	} else {
-		dst.AAAA = nil
 	}
 
-	// try to unmarshal data into CNAME
-	err = json.Unmarshal(data, &dst.CNAME)
-	if err == nil {
-		jsonCNAME, _ := json.Marshal(dst.CNAME)
-		if string(jsonCNAME) == "{}" { // empty struct
+	// check if the discriminator value is 'CNAME'
+	if jsonDict["type"] == "CNAME" {
+		// try to unmarshal JSON data into CNAME
+		err = json.Unmarshal(data, &dst.CNAME)
+		if err == nil {
+			return nil // data stored in dst.CNAME, return on the first match
+		} else {
 			dst.CNAME = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as CNAME: %s", err.Error())
 		}
-	} else {
-		dst.CNAME = nil
 	}
 
-	// try to unmarshal data into MX
-	err = json.Unmarshal(data, &dst.MX)
-	if err == nil {
-		jsonMX, _ := json.Marshal(dst.MX)
-		if string(jsonMX) == "{}" { // empty struct
+	// check if the discriminator value is 'MX'
+	if jsonDict["type"] == "MX" {
+		// try to unmarshal JSON data into MX
+		err = json.Unmarshal(data, &dst.MX)
+		if err == nil {
+			return nil // data stored in dst.MX, return on the first match
+		} else {
 			dst.MX = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as MX: %s", err.Error())
 		}
-	} else {
-		dst.MX = nil
 	}
 
-	// try to unmarshal data into SRV
-	err = json.Unmarshal(data, &dst.SRV)
-	if err == nil {
-		jsonSRV, _ := json.Marshal(dst.SRV)
-		if string(jsonSRV) == "{}" { // empty struct
+	// check if the discriminator value is 'SRV'
+	if jsonDict["type"] == "SRV" {
+		// try to unmarshal JSON data into SRV
+		err = json.Unmarshal(data, &dst.SRV)
+		if err == nil {
+			return nil // data stored in dst.SRV, return on the first match
+		} else {
 			dst.SRV = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as SRV: %s", err.Error())
 		}
-	} else {
-		dst.SRV = nil
 	}
 
-	// try to unmarshal data into TXT
-	err = json.Unmarshal(data, &dst.TXT)
-	if err == nil {
-		jsonTXT, _ := json.Marshal(dst.TXT)
-		if string(jsonTXT) == "{}" { // empty struct
+	// check if the discriminator value is 'TXT'
+	if jsonDict["type"] == "TXT" {
+		// try to unmarshal JSON data into TXT
+		err = json.Unmarshal(data, &dst.TXT)
+		if err == nil {
+			return nil // data stored in dst.TXT, return on the first match
+		} else {
 			dst.TXT = nil
-		} else {
-			match++
+			return fmt.Errorf("Failed to unmarshal DNSRecord as TXT: %s", err.Error())
 		}
-	} else {
-		dst.TXT = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.A = nil
-		dst.AAAA = nil
-		dst.CNAME = nil
-		dst.MX = nil
-		dst.SRV = nil
-		dst.TXT = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(DNSRecord)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(DNSRecord)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
