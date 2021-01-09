@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Data** | **string** | The target MX host. | 
-**Priority** | **int32** | MX record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed | 
+**Priority** | **string** | MX record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed | 
 
 ## Methods
 
 ### NewMXAllOf
 
-`func NewMXAllOf(type_ string, data string, priority int32, ) *MXAllOf`
+`func NewMXAllOf(type_ string, data string, priority string, ) *MXAllOf`
 
 NewMXAllOf instantiates a new MXAllOf object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetData sets Data field to given value.
 
 ### GetPriority
 
-`func (o *MXAllOf) GetPriority() int32`
+`func (o *MXAllOf) GetPriority() string`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *MXAllOf) GetPriorityOk() (*int32, bool)`
+`func (o *MXAllOf) GetPriorityOk() (*string, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *MXAllOf) SetPriority(v int32)`
+`func (o *MXAllOf) SetPriority(v string)`
 
 SetPriority sets Priority field to given value.
 

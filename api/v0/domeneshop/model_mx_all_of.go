@@ -21,14 +21,14 @@ type MXAllOf struct {
 	// The target MX host.
 	Data string `json:"data"`
 	// MX record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed
-	Priority int32 `json:"priority"`
+	Priority string `json:"priority"`
 }
 
 // NewMXAllOf instantiates a new MXAllOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMXAllOf(type_ string, data string, priority int32, ) *MXAllOf {
+func NewMXAllOf(type_ string, data string, priority string, ) *MXAllOf {
 	this := MXAllOf{}
 	this.Type = type_
 	this.Data = data
@@ -93,9 +93,9 @@ func (o *MXAllOf) SetData(v string) {
 }
 
 // GetPriority returns the Priority field value
-func (o *MXAllOf) GetPriority() int32 {
+func (o *MXAllOf) GetPriority() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *MXAllOf) GetPriority() int32 {
 
 // GetPriorityOk returns a tuple with the Priority field value
 // and a boolean to check if the value has been set.
-func (o *MXAllOf) GetPriorityOk() (*int32, bool) {
+func (o *MXAllOf) GetPriorityOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *MXAllOf) GetPriorityOk() (*int32, bool) {
 }
 
 // SetPriority sets field value
-func (o *MXAllOf) SetPriority(v int32) {
+func (o *MXAllOf) SetPriority(v string) {
 	o.Priority = v
 }
 

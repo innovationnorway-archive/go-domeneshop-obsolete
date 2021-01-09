@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Data** | **string** | The target hostname | 
-**Priority** | **int32** | SRV record priority, also known as preference. Lower values are usually preferred first | 
-**Weight** | **int32** | SRV record weight. Relevant if multiple records have same preference | 
-**Port** | **int32** | SRV record port. The port where the service is found. | 
+**Priority** | **string** | SRV record priority, also known as preference. Lower values are usually preferred first | 
+**Weight** | **string** | SRV record weight. Relevant if multiple records have same preference | 
+**Port** | **string** | SRV record port. The port where the service is found. | 
 
 ## Methods
 
 ### NewSRVAllOf
 
-`func NewSRVAllOf(type_ string, data string, priority int32, weight int32, port int32, ) *SRVAllOf`
+`func NewSRVAllOf(type_ string, data string, priority string, weight string, port string, ) *SRVAllOf`
 
 NewSRVAllOf instantiates a new SRVAllOf object
 This constructor will assign default values to properties that have it defined,
@@ -71,60 +71,60 @@ SetData sets Data field to given value.
 
 ### GetPriority
 
-`func (o *SRVAllOf) GetPriority() int32`
+`func (o *SRVAllOf) GetPriority() string`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *SRVAllOf) GetPriorityOk() (*int32, bool)`
+`func (o *SRVAllOf) GetPriorityOk() (*string, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *SRVAllOf) SetPriority(v int32)`
+`func (o *SRVAllOf) SetPriority(v string)`
 
 SetPriority sets Priority field to given value.
 
 
 ### GetWeight
 
-`func (o *SRVAllOf) GetWeight() int32`
+`func (o *SRVAllOf) GetWeight() string`
 
 GetWeight returns the Weight field if non-nil, zero value otherwise.
 
 ### GetWeightOk
 
-`func (o *SRVAllOf) GetWeightOk() (*int32, bool)`
+`func (o *SRVAllOf) GetWeightOk() (*string, bool)`
 
 GetWeightOk returns a tuple with the Weight field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWeight
 
-`func (o *SRVAllOf) SetWeight(v int32)`
+`func (o *SRVAllOf) SetWeight(v string)`
 
 SetWeight sets Weight field to given value.
 
 
 ### GetPort
 
-`func (o *SRVAllOf) GetPort() int32`
+`func (o *SRVAllOf) GetPort() string`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *SRVAllOf) GetPortOk() (*int32, bool)`
+`func (o *SRVAllOf) GetPortOk() (*string, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *SRVAllOf) SetPort(v int32)`
+`func (o *SRVAllOf) SetPort(v string)`
 
 SetPort sets Port field to given value.
 
