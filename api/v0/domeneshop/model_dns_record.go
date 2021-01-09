@@ -21,10 +21,13 @@ type DNSRecord struct {
 	A *A
 	AAAA *AAAA
 	ANAME *ANAME
+	CAA *CAA
 	CNAME *CNAME
+	DS *DS
 	MX *MX
 	NS *NS
 	SRV *SRV
+	TLSA *TLSA
 	TXT *TXT
 }
 
@@ -43,9 +46,19 @@ func ANAMEAsDNSRecord(v *ANAME) DNSRecord {
 	return DNSRecord{ ANAME: v}
 }
 
+// CAAAsDNSRecord is a convenience function that returns CAA wrapped in DNSRecord
+func CAAAsDNSRecord(v *CAA) DNSRecord {
+	return DNSRecord{ CAA: v}
+}
+
 // CNAMEAsDNSRecord is a convenience function that returns CNAME wrapped in DNSRecord
 func CNAMEAsDNSRecord(v *CNAME) DNSRecord {
 	return DNSRecord{ CNAME: v}
+}
+
+// DSAsDNSRecord is a convenience function that returns DS wrapped in DNSRecord
+func DSAsDNSRecord(v *DS) DNSRecord {
+	return DNSRecord{ DS: v}
 }
 
 // MXAsDNSRecord is a convenience function that returns MX wrapped in DNSRecord
@@ -61,6 +74,11 @@ func NSAsDNSRecord(v *NS) DNSRecord {
 // SRVAsDNSRecord is a convenience function that returns SRV wrapped in DNSRecord
 func SRVAsDNSRecord(v *SRV) DNSRecord {
 	return DNSRecord{ SRV: v}
+}
+
+// TLSAAsDNSRecord is a convenience function that returns TLSA wrapped in DNSRecord
+func TLSAAsDNSRecord(v *TLSA) DNSRecord {
+	return DNSRecord{ TLSA: v}
 }
 
 // TXTAsDNSRecord is a convenience function that returns TXT wrapped in DNSRecord
@@ -115,6 +133,18 @@ func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'CAA'
+	if jsonDict["type"] == "CAA" {
+		// try to unmarshal JSON data into CAA
+		err = json.Unmarshal(data, &dst.CAA)
+		if err == nil {
+			return nil // data stored in dst.CAA, return on the first match
+		} else {
+			dst.CAA = nil
+			return fmt.Errorf("Failed to unmarshal DNSRecord as CAA: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'CNAME'
 	if jsonDict["type"] == "CNAME" {
 		// try to unmarshal JSON data into CNAME
@@ -124,6 +154,18 @@ func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.CNAME = nil
 			return fmt.Errorf("Failed to unmarshal DNSRecord as CNAME: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'DS'
+	if jsonDict["type"] == "DS" {
+		// try to unmarshal JSON data into DS
+		err = json.Unmarshal(data, &dst.DS)
+		if err == nil {
+			return nil // data stored in dst.DS, return on the first match
+		} else {
+			dst.DS = nil
+			return fmt.Errorf("Failed to unmarshal DNSRecord as DS: %s", err.Error())
 		}
 	}
 
@@ -163,6 +205,18 @@ func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'TLSA'
+	if jsonDict["type"] == "TLSA" {
+		// try to unmarshal JSON data into TLSA
+		err = json.Unmarshal(data, &dst.TLSA)
+		if err == nil {
+			return nil // data stored in dst.TLSA, return on the first match
+		} else {
+			dst.TLSA = nil
+			return fmt.Errorf("Failed to unmarshal DNSRecord as TLSA: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'TXT'
 	if jsonDict["type"] == "TXT" {
 		// try to unmarshal JSON data into TXT
@@ -192,8 +246,16 @@ func (src DNSRecord) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ANAME)
 	}
 
+	if src.CAA != nil {
+		return json.Marshal(&src.CAA)
+	}
+
 	if src.CNAME != nil {
 		return json.Marshal(&src.CNAME)
+	}
+
+	if src.DS != nil {
+		return json.Marshal(&src.DS)
 	}
 
 	if src.MX != nil {
@@ -206,6 +268,10 @@ func (src DNSRecord) MarshalJSON() ([]byte, error) {
 
 	if src.SRV != nil {
 		return json.Marshal(&src.SRV)
+	}
+
+	if src.TLSA != nil {
+		return json.Marshal(&src.TLSA)
 	}
 
 	if src.TXT != nil {
@@ -229,8 +295,16 @@ func (obj *DNSRecord) GetActualInstance() (interface{}) {
 		return obj.ANAME
 	}
 
+	if obj.CAA != nil {
+		return obj.CAA
+	}
+
 	if obj.CNAME != nil {
 		return obj.CNAME
+	}
+
+	if obj.DS != nil {
+		return obj.DS
 	}
 
 	if obj.MX != nil {
@@ -243,6 +317,10 @@ func (obj *DNSRecord) GetActualInstance() (interface{}) {
 
 	if obj.SRV != nil {
 		return obj.SRV
+	}
+
+	if obj.TLSA != nil {
+		return obj.TLSA
 	}
 
 	if obj.TXT != nil {

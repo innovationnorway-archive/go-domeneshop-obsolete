@@ -736,6 +736,18 @@ components:
       allOf:
       - $ref: '#/components/schemas/BaseRecord'
       - $ref: '#/components/schemas/CNAME_allOf'
+    CAA:
+      allOf:
+      - $ref: '#/components/schemas/BaseRecord'
+      - $ref: '#/components/schemas/CAA_allOf'
+    DS:
+      allOf:
+      - $ref: '#/components/schemas/BaseRecord'
+      - $ref: '#/components/schemas/DS_allOf'
+    TLSA:
+      allOf:
+      - $ref: '#/components/schemas/BaseRecord'
+      - $ref: '#/components/schemas/TLSA_allOf'
     DNSRecord:
       discriminator:
         mapping:
@@ -747,6 +759,9 @@ components:
           NS: '#/components/schemas/NS'
           SRV: '#/components/schemas/SRV'
           TXT: '#/components/schemas/TXT'
+          CAA: '#/components/schemas/CAA'
+          DS: '#/components/schemas/DS'
+          TLSA: '#/components/schemas/TLSA'
         propertyName: type
       oneOf:
       - $ref: '#/components/schemas/A'
@@ -757,6 +772,9 @@ components:
       - $ref: '#/components/schemas/NS'
       - $ref: '#/components/schemas/SRV'
       - $ref: '#/components/schemas/TXT'
+      - $ref: '#/components/schemas/CAA'
+      - $ref: '#/components/schemas/DS'
+      - $ref: '#/components/schemas/TLSA'
     HTTPForward:
       example:
         host: '@'
@@ -980,6 +998,85 @@ components:
       required:
       - data
       - type
+      type: object
+    CAA_allOf:
+      properties:
+        type:
+          enum:
+          - CAA
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+        flags:
+          description: CAA record flags.
+          format: int32
+          type: integer
+        tag:
+          description: CAA record tag.
+          format: int32
+          type: integer
+      required:
+      - data
+      - flags
+      - tag
+      - type
+      type: object
+    DS_allOf:
+      properties:
+        type:
+          enum:
+          - DS
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+        tag:
+          description: DS record tag.
+          format: int32
+          type: integer
+        alg:
+          description: DS record algorithm.
+          format: int32
+          type: integer
+        digest:
+          description: DS record digest type.
+          format: int32
+          type: integer
+      required:
+      - alg
+      - data
+      - digest
+      - tag
+      - type
+      type: object
+    TLSA_allOf:
+      properties:
+        type:
+          enum:
+          - TLSA
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+        usage:
+          description: TLSA record certificate usage.
+          format: int32
+          type: integer
+        selector:
+          description: TLSA record selector.
+          format: int32
+          type: integer
+        dtype:
+          description: TLSA record matching type.
+          format: int32
+          type: integer
+      required:
+      - data
+      - dtype
+      - selector
+      - type
+      - usage
       type: object
   securitySchemes:
     basicAuth:
