@@ -20,8 +20,10 @@ import (
 type DNSRecord struct {
 	A *A
 	AAAA *AAAA
+	ANAME *ANAME
 	CNAME *CNAME
 	MX *MX
+	NS *NS
 	SRV *SRV
 	TXT *TXT
 }
@@ -36,6 +38,11 @@ func AAAAAsDNSRecord(v *AAAA) DNSRecord {
 	return DNSRecord{ AAAA: v}
 }
 
+// ANAMEAsDNSRecord is a convenience function that returns ANAME wrapped in DNSRecord
+func ANAMEAsDNSRecord(v *ANAME) DNSRecord {
+	return DNSRecord{ ANAME: v}
+}
+
 // CNAMEAsDNSRecord is a convenience function that returns CNAME wrapped in DNSRecord
 func CNAMEAsDNSRecord(v *CNAME) DNSRecord {
 	return DNSRecord{ CNAME: v}
@@ -44,6 +51,11 @@ func CNAMEAsDNSRecord(v *CNAME) DNSRecord {
 // MXAsDNSRecord is a convenience function that returns MX wrapped in DNSRecord
 func MXAsDNSRecord(v *MX) DNSRecord {
 	return DNSRecord{ MX: v}
+}
+
+// NSAsDNSRecord is a convenience function that returns NS wrapped in DNSRecord
+func NSAsDNSRecord(v *NS) DNSRecord {
+	return DNSRecord{ NS: v}
 }
 
 // SRVAsDNSRecord is a convenience function that returns SRV wrapped in DNSRecord
@@ -91,6 +103,18 @@ func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'ANAME'
+	if jsonDict["type"] == "ANAME" {
+		// try to unmarshal JSON data into ANAME
+		err = json.Unmarshal(data, &dst.ANAME)
+		if err == nil {
+			return nil // data stored in dst.ANAME, return on the first match
+		} else {
+			dst.ANAME = nil
+			return fmt.Errorf("Failed to unmarshal DNSRecord as ANAME: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'CNAME'
 	if jsonDict["type"] == "CNAME" {
 		// try to unmarshal JSON data into CNAME
@@ -112,6 +136,18 @@ func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.MX = nil
 			return fmt.Errorf("Failed to unmarshal DNSRecord as MX: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'NS'
+	if jsonDict["type"] == "NS" {
+		// try to unmarshal JSON data into NS
+		err = json.Unmarshal(data, &dst.NS)
+		if err == nil {
+			return nil // data stored in dst.NS, return on the first match
+		} else {
+			dst.NS = nil
+			return fmt.Errorf("Failed to unmarshal DNSRecord as NS: %s", err.Error())
 		}
 	}
 
@@ -152,12 +188,20 @@ func (src DNSRecord) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AAAA)
 	}
 
+	if src.ANAME != nil {
+		return json.Marshal(&src.ANAME)
+	}
+
 	if src.CNAME != nil {
 		return json.Marshal(&src.CNAME)
 	}
 
 	if src.MX != nil {
 		return json.Marshal(&src.MX)
+	}
+
+	if src.NS != nil {
+		return json.Marshal(&src.NS)
 	}
 
 	if src.SRV != nil {
@@ -181,12 +225,20 @@ func (obj *DNSRecord) GetActualInstance() (interface{}) {
 		return obj.AAAA
 	}
 
+	if obj.ANAME != nil {
+		return obj.ANAME
+	}
+
 	if obj.CNAME != nil {
 		return obj.CNAME
 	}
 
 	if obj.MX != nil {
 		return obj.MX
+	}
+
+	if obj.NS != nil {
+		return obj.NS
 	}
 
 	if obj.SRV != nil {
