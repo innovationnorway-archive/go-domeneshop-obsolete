@@ -27,18 +27,18 @@ type SRV struct {
 	// The target hostname
 	Data string `json:"data"`
 	// SRV record priority, also known as preference. Lower values are usually preferred first
-	Priority int32 `json:"priority"`
+	Priority string `json:"priority"`
 	// SRV record weight. Relevant if multiple records have same preference
-	Weight int32 `json:"weight"`
+	Weight string `json:"weight"`
 	// SRV record port. The port where the service is found.
-	Port int32 `json:"port"`
+	Port string `json:"port"`
 }
 
 // NewSRV instantiates a new SRV object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSRV(id int32, host string, type_ string, data string, priority int32, weight int32, port int32, ) *SRV {
+func NewSRV(id int32, host string, type_ string, data string, priority string, weight string, port string, ) *SRV {
 	this := SRV{}
 	this.Id = id
 	this.Host = host
@@ -191,9 +191,9 @@ func (o *SRV) SetData(v string) {
 }
 
 // GetPriority returns the Priority field value
-func (o *SRV) GetPriority() int32 {
+func (o *SRV) GetPriority() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -202,7 +202,7 @@ func (o *SRV) GetPriority() int32 {
 
 // GetPriorityOk returns a tuple with the Priority field value
 // and a boolean to check if the value has been set.
-func (o *SRV) GetPriorityOk() (*int32, bool) {
+func (o *SRV) GetPriorityOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -210,14 +210,14 @@ func (o *SRV) GetPriorityOk() (*int32, bool) {
 }
 
 // SetPriority sets field value
-func (o *SRV) SetPriority(v int32) {
+func (o *SRV) SetPriority(v string) {
 	o.Priority = v
 }
 
 // GetWeight returns the Weight field value
-func (o *SRV) GetWeight() int32 {
+func (o *SRV) GetWeight() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -226,7 +226,7 @@ func (o *SRV) GetWeight() int32 {
 
 // GetWeightOk returns a tuple with the Weight field value
 // and a boolean to check if the value has been set.
-func (o *SRV) GetWeightOk() (*int32, bool) {
+func (o *SRV) GetWeightOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -234,14 +234,14 @@ func (o *SRV) GetWeightOk() (*int32, bool) {
 }
 
 // SetWeight sets field value
-func (o *SRV) SetWeight(v int32) {
+func (o *SRV) SetWeight(v string) {
 	o.Weight = v
 }
 
 // GetPort returns the Port field value
-func (o *SRV) GetPort() int32 {
+func (o *SRV) GetPort() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -250,7 +250,7 @@ func (o *SRV) GetPort() int32 {
 
 // GetPortOk returns a tuple with the Port field value
 // and a boolean to check if the value has been set.
-func (o *SRV) GetPortOk() (*int32, bool) {
+func (o *SRV) GetPortOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -258,7 +258,7 @@ func (o *SRV) GetPortOk() (*int32, bool) {
 }
 
 // SetPort sets field value
-func (o *SRV) SetPort(v int32) {
+func (o *SRV) SetPort(v string) {
 	o.Port = v
 }
 

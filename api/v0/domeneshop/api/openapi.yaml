@@ -877,9 +877,8 @@ components:
         priority:
           description: MX record priority, also known as preference. Lower values
             are usually preferred first, but this is not guaranteed
-          example: 1
-          format: int16
-          type: integer
+          example: "1"
+          type: string
       required:
       - data
       - priority
@@ -899,19 +898,16 @@ components:
         priority:
           description: SRV record priority, also known as preference. Lower values
             are usually preferred first
-          example: 10
-          format: int16
-          type: integer
+          example: "10"
+          type: string
         weight:
           description: SRV record weight. Relevant if multiple records have same preference
-          example: 100
-          format: int16
-          type: integer
+          example: "100"
+          type: string
         port:
           description: SRV record port. The port where the service is found.
-          example: 443
-          format: int16
-          type: integer
+          example: "443"
+          type: string
       required:
       - data
       - port

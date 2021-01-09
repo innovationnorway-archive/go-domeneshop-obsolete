@@ -9,15 +9,15 @@ Name | Type | Description | Notes
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
 **Data** | **string** | Freeform text field. | 
-**Priority** | **int32** | SRV record priority, also known as preference. Lower values are usually preferred first | 
-**Weight** | **int32** | SRV record weight. Relevant if multiple records have same preference | 
-**Port** | **int32** | SRV record port. The port where the service is found. | 
+**Priority** | **string** | SRV record priority, also known as preference. Lower values are usually preferred first | 
+**Weight** | **string** | SRV record weight. Relevant if multiple records have same preference | 
+**Port** | **string** | SRV record port. The port where the service is found. | 
 
 ## Methods
 
 ### NewDNSRecord
 
-`func NewDNSRecord(id int32, host string, type_ string, data string, priority int32, weight int32, port int32, ) *DNSRecord`
+`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, ) *DNSRecord`
 
 NewDNSRecord instantiates a new DNSRecord object
 This constructor will assign default values to properties that have it defined,
@@ -139,60 +139,60 @@ SetData sets Data field to given value.
 
 ### GetPriority
 
-`func (o *DNSRecord) GetPriority() int32`
+`func (o *DNSRecord) GetPriority() string`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *DNSRecord) GetPriorityOk() (*int32, bool)`
+`func (o *DNSRecord) GetPriorityOk() (*string, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *DNSRecord) SetPriority(v int32)`
+`func (o *DNSRecord) SetPriority(v string)`
 
 SetPriority sets Priority field to given value.
 
 
 ### GetWeight
 
-`func (o *DNSRecord) GetWeight() int32`
+`func (o *DNSRecord) GetWeight() string`
 
 GetWeight returns the Weight field if non-nil, zero value otherwise.
 
 ### GetWeightOk
 
-`func (o *DNSRecord) GetWeightOk() (*int32, bool)`
+`func (o *DNSRecord) GetWeightOk() (*string, bool)`
 
 GetWeightOk returns a tuple with the Weight field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWeight
 
-`func (o *DNSRecord) SetWeight(v int32)`
+`func (o *DNSRecord) SetWeight(v string)`
 
 SetWeight sets Weight field to given value.
 
 
 ### GetPort
 
-`func (o *DNSRecord) GetPort() int32`
+`func (o *DNSRecord) GetPort() string`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *DNSRecord) GetPortOk() (*int32, bool)`
+`func (o *DNSRecord) GetPortOk() (*string, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *DNSRecord) SetPort(v int32)`
+`func (o *DNSRecord) SetPort(v string)`
 
 SetPort sets Port field to given value.
 

@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
 **Data** | **string** | The target MX host. | 
-**Priority** | **int32** | MX record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed | 
+**Priority** | **string** | MX record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed | 
 
 ## Methods
 
 ### NewMX
 
-`func NewMX(id int32, host string, type_ string, data string, priority int32, ) *MX`
+`func NewMX(id int32, host string, type_ string, data string, priority string, ) *MX`
 
 NewMX instantiates a new MX object
 This constructor will assign default values to properties that have it defined,
@@ -137,20 +137,20 @@ SetData sets Data field to given value.
 
 ### GetPriority
 
-`func (o *MX) GetPriority() int32`
+`func (o *MX) GetPriority() string`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *MX) GetPriorityOk() (*int32, bool)`
+`func (o *MX) GetPriorityOk() (*string, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *MX) SetPriority(v int32)`
+`func (o *MX) SetPriority(v string)`
 
 SetPriority sets Priority field to given value.
 
