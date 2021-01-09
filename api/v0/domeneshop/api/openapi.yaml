@@ -711,10 +711,18 @@ components:
       allOf:
       - $ref: '#/components/schemas/BaseRecord'
       - $ref: '#/components/schemas/AAAA_allOf'
+    ANAME:
+      allOf:
+      - $ref: '#/components/schemas/BaseRecord'
+      - $ref: '#/components/schemas/ANAME_allOf'
     MX:
       allOf:
       - $ref: '#/components/schemas/BaseRecord'
       - $ref: '#/components/schemas/MX_allOf'
+    NS:
+      allOf:
+      - $ref: '#/components/schemas/BaseRecord'
+      - $ref: '#/components/schemas/NS_allOf'
     SRV:
       allOf:
       - $ref: '#/components/schemas/BaseRecord'
@@ -733,16 +741,20 @@ components:
         mapping:
           A: '#/components/schemas/A'
           AAAA: '#/components/schemas/AAAA'
+          ANAME: '#/components/schemas/ANAME'
           CNAME: '#/components/schemas/CNAME'
           MX: '#/components/schemas/MX'
+          NS: '#/components/schemas/NS'
           SRV: '#/components/schemas/SRV'
           TXT: '#/components/schemas/TXT'
         propertyName: type
       oneOf:
       - $ref: '#/components/schemas/A'
       - $ref: '#/components/schemas/AAAA'
+      - $ref: '#/components/schemas/ANAME'
       - $ref: '#/components/schemas/CNAME'
       - $ref: '#/components/schemas/MX'
+      - $ref: '#/components/schemas/NS'
       - $ref: '#/components/schemas/SRV'
       - $ref: '#/components/schemas/TXT'
     HTTPForward:
@@ -863,6 +875,19 @@ components:
       - data
       - type
       type: object
+    ANAME_allOf:
+      properties:
+        type:
+          enum:
+          - ANAME
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+      required:
+      - data
+      - type
+      type: object
     MX_allOf:
       properties:
         type:
@@ -882,6 +907,19 @@ components:
       required:
       - data
       - priority
+      - type
+      type: object
+    NS_allOf:
+      properties:
+        type:
+          enum:
+          - NS
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+      required:
+      - data
       - type
       type: object
     SRV_allOf:
