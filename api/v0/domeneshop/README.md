@@ -144,35 +144,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [A](docs/A.md)
- - [AAAA](docs/AAAA.md)
- - [AAAAAllOf](docs/AAAAAllOf.md)
- - [AAllOf](docs/AAllOf.md)
- - [ANAME](docs/ANAME.md)
- - [ANAMEAllOf](docs/ANAMEAllOf.md)
- - [BaseRecord](docs/BaseRecord.md)
- - [CAA](docs/CAA.md)
- - [CAAAllOf](docs/CAAAllOf.md)
- - [CNAME](docs/CNAME.md)
- - [CNAMEAllOf](docs/CNAMEAllOf.md)
  - [DNSRecord](docs/DNSRecord.md)
- - [DS](docs/DS.md)
- - [DSAllOf](docs/DSAllOf.md)
  - [Domain](docs/Domain.md)
  - [DomainServices](docs/DomainServices.md)
  - [HTTPForward](docs/HTTPForward.md)
  - [InlineResponse201](docs/InlineResponse201.md)
  - [Invoice](docs/Invoice.md)
- - [MX](docs/MX.md)
- - [MXAllOf](docs/MXAllOf.md)
- - [NS](docs/NS.md)
- - [NSAllOf](docs/NSAllOf.md)
- - [SRV](docs/SRV.md)
- - [SRVAllOf](docs/SRVAllOf.md)
- - [TLSA](docs/TLSA.md)
- - [TLSAAllOf](docs/TLSAAllOf.md)
- - [TXT](docs/TXT.md)
- - [TXTAllOf](docs/TXTAllOf.md)
 
 
 ## Documentation For Authorization

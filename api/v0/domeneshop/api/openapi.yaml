@@ -681,7 +681,23 @@ components:
           - webxlarge
           type: string
       type: object
-    BaseRecord:
+    DNSRecord:
+      example:
+        data: data
+        usage: usage
+        flags: flags
+        weight: "100"
+        dtype: dtype
+        type: A
+        priority: "1"
+        ttl: 48489
+        port: "443"
+        host: '@'
+        digest: digest
+        selector: selector
+        id: 1
+        tag: tag
+        alg: alg
       properties:
         id:
           description: ID of DNS record
@@ -695,86 +711,67 @@ components:
         ttl:
           default: 3600
           description: TTL of DNS record in seconds. Must be a multiple of 60.
-          format: int16
+          format: int32
           maximum: 604800
           minimum: 60
           type: integer
+        type:
+          enum:
+          - A
+          - AAAA
+          - ANAME
+          - CNAME
+          - MX
+          - NS
+          - SRV
+          - TXT
+          - CAA
+          - DS
+          - TLSA
+          type: string
+        data:
+          description: The value of the record.
+          type: string
+        priority:
+          description: MX/SRV record priority, also known as preference. Lower values
+            are usually preferred first, but this is not guaranteed
+          example: "1"
+          type: string
+        weight:
+          description: SRV record weight. Relevant if multiple records have same preference
+          example: "100"
+          type: string
+        port:
+          description: SRV record port. The port where the service is found.
+          example: "443"
+          type: string
+        flags:
+          description: CAA record flags.
+          type: string
+        tag:
+          description: CAA/DS record tag.
+          type: string
+        alg:
+          description: DS record algorithm.
+          type: string
+        digest:
+          description: DS record digest type.
+          type: string
+        usage:
+          description: TLSA record certificate usage.
+          type: string
+        selector:
+          description: TLSA record selector.
+          type: string
+        dtype:
+          description: TLSA record matching type.
+          type: string
       required:
+      - data
       - host
       - id
+      - type
       type: object
-    A:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/A_allOf'
-    AAAA:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/AAAA_allOf'
-    ANAME:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/ANAME_allOf'
-    MX:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/MX_allOf'
-    NS:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/NS_allOf'
-    SRV:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/SRV_allOf'
-      description: SRV records yo!
-    TXT:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/TXT_allOf'
-    CNAME:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/CNAME_allOf'
-    CAA:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/CAA_allOf'
-    DS:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/DS_allOf'
-    TLSA:
-      allOf:
-      - $ref: '#/components/schemas/BaseRecord'
-      - $ref: '#/components/schemas/TLSA_allOf'
-    DNSRecord:
-      discriminator:
-        mapping:
-          A: '#/components/schemas/A'
-          AAAA: '#/components/schemas/AAAA'
-          ANAME: '#/components/schemas/ANAME'
-          CNAME: '#/components/schemas/CNAME'
-          MX: '#/components/schemas/MX'
-          NS: '#/components/schemas/NS'
-          SRV: '#/components/schemas/SRV'
-          TXT: '#/components/schemas/TXT'
-          CAA: '#/components/schemas/CAA'
-          DS: '#/components/schemas/DS'
-          TLSA: '#/components/schemas/TLSA'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/A'
-      - $ref: '#/components/schemas/AAAA'
-      - $ref: '#/components/schemas/ANAME'
-      - $ref: '#/components/schemas/CNAME'
-      - $ref: '#/components/schemas/MX'
-      - $ref: '#/components/schemas/NS'
-      - $ref: '#/components/schemas/SRV'
-      - $ref: '#/components/schemas/TXT'
-      - $ref: '#/components/schemas/CAA'
-      - $ref: '#/components/schemas/DS'
-      - $ref: '#/components/schemas/TLSA'
     HTTPForward:
       example:
         host: '@'
@@ -864,211 +861,6 @@ components:
           description: ID of the created DNS record
           example: 1
           type: integer
-      type: object
-    A_allOf:
-      properties:
-        type:
-          enum:
-          - A
-          type: string
-        data:
-          description: IPv4 address
-          format: ipv4
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    AAAA_allOf:
-      properties:
-        type:
-          enum:
-          - AAAA
-          type: string
-        data:
-          description: IPv6 address
-          format: ipv6
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    ANAME_allOf:
-      properties:
-        type:
-          enum:
-          - ANAME
-          type: string
-        data:
-          description: The value of the record.
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    MX_allOf:
-      properties:
-        type:
-          enum:
-          - MX
-          type: string
-        data:
-          description: The target MX host.
-          example: mx.example.com
-          format: hostname
-          type: string
-        priority:
-          description: MX record priority, also known as preference. Lower values
-            are usually preferred first, but this is not guaranteed
-          example: "1"
-          type: string
-      required:
-      - data
-      - priority
-      - type
-      type: object
-    NS_allOf:
-      properties:
-        type:
-          enum:
-          - NS
-          type: string
-        data:
-          description: The value of the record.
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    SRV_allOf:
-      properties:
-        type:
-          enum:
-          - SRV
-          type: string
-        data:
-          description: The target hostname
-          example: www.example.com
-          format: hostname
-          type: string
-        priority:
-          description: SRV record priority, also known as preference. Lower values
-            are usually preferred first
-          example: "10"
-          type: string
-        weight:
-          description: SRV record weight. Relevant if multiple records have same preference
-          example: "100"
-          type: string
-        port:
-          description: SRV record port. The port where the service is found.
-          example: "443"
-          type: string
-      required:
-      - data
-      - port
-      - priority
-      - type
-      - weight
-      type: object
-    TXT_allOf:
-      properties:
-        type:
-          enum:
-          - TXT
-          type: string
-        data:
-          description: Freeform text field.
-          example: v=spf1 include:_spf.domeneshop.no ~all
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    CNAME_allOf:
-      properties:
-        type:
-          enum:
-          - CNAME
-          type: string
-        data:
-          description: The target hostname
-          example: www.example.com
-          type: string
-      required:
-      - data
-      - type
-      type: object
-    CAA_allOf:
-      properties:
-        type:
-          enum:
-          - CAA
-          type: string
-        data:
-          description: The value of the record.
-          type: string
-        flags:
-          description: CAA record flags.
-          type: string
-        tag:
-          description: CAA record tag.
-          type: string
-      required:
-      - data
-      - flags
-      - tag
-      - type
-      type: object
-    DS_allOf:
-      properties:
-        type:
-          enum:
-          - DS
-          type: string
-        data:
-          description: The value of the record.
-          type: string
-        tag:
-          description: DS record tag.
-          type: string
-        alg:
-          description: DS record algorithm.
-          type: string
-        digest:
-          description: DS record digest type.
-          type: string
-      required:
-      - alg
-      - data
-      - digest
-      - tag
-      - type
-      type: object
-    TLSA_allOf:
-      properties:
-        type:
-          enum:
-          - TLSA
-          type: string
-        data:
-          description: The value of the record.
-          type: string
-        usage:
-          description: TLSA record certificate usage.
-          type: string
-        selector:
-          description: TLSA record selector.
-          type: string
-        dtype:
-          description: TLSA record matching type.
-          type: string
-      required:
-      - data
-      - dtype
-      - selector
-      - type
-      - usage
       type: object
   securitySchemes:
     basicAuth:
