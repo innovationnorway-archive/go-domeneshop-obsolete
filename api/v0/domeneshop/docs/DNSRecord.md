@@ -8,16 +8,23 @@ Name | Type | Description | Notes
 **Host** | **string** | The host/subdomain the DNS record applies to | 
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
-**Data** | **string** | Freeform text field. | 
+**Data** | **string** | The value of the record. | 
 **Priority** | **string** | SRV record priority, also known as preference. Lower values are usually preferred first | 
 **Weight** | **string** | SRV record weight. Relevant if multiple records have same preference | 
 **Port** | **string** | SRV record port. The port where the service is found. | 
+**Flags** | **string** | CAA record flags. | 
+**Tag** | **string** | DS record tag. | 
+**Alg** | **string** | DS record algorithm. | 
+**Digest** | **string** | DS record digest type. | 
+**Usage** | **string** | TLSA record certificate usage. | 
+**Selector** | **string** | TLSA record selector. | 
+**Dtype** | **string** | TLSA record matching type. | 
 
 ## Methods
 
 ### NewDNSRecord
 
-`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, ) *DNSRecord`
+`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, flags string, tag string, alg string, digest string, usage string, selector string, dtype string, ) *DNSRecord`
 
 NewDNSRecord instantiates a new DNSRecord object
 This constructor will assign default values to properties that have it defined,
@@ -195,6 +202,146 @@ and a boolean to check if the value has been set.
 `func (o *DNSRecord) SetPort(v string)`
 
 SetPort sets Port field to given value.
+
+
+### GetFlags
+
+`func (o *DNSRecord) GetFlags() string`
+
+GetFlags returns the Flags field if non-nil, zero value otherwise.
+
+### GetFlagsOk
+
+`func (o *DNSRecord) GetFlagsOk() (*string, bool)`
+
+GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFlags
+
+`func (o *DNSRecord) SetFlags(v string)`
+
+SetFlags sets Flags field to given value.
+
+
+### GetTag
+
+`func (o *DNSRecord) GetTag() string`
+
+GetTag returns the Tag field if non-nil, zero value otherwise.
+
+### GetTagOk
+
+`func (o *DNSRecord) GetTagOk() (*string, bool)`
+
+GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTag
+
+`func (o *DNSRecord) SetTag(v string)`
+
+SetTag sets Tag field to given value.
+
+
+### GetAlg
+
+`func (o *DNSRecord) GetAlg() string`
+
+GetAlg returns the Alg field if non-nil, zero value otherwise.
+
+### GetAlgOk
+
+`func (o *DNSRecord) GetAlgOk() (*string, bool)`
+
+GetAlgOk returns a tuple with the Alg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlg
+
+`func (o *DNSRecord) SetAlg(v string)`
+
+SetAlg sets Alg field to given value.
+
+
+### GetDigest
+
+`func (o *DNSRecord) GetDigest() string`
+
+GetDigest returns the Digest field if non-nil, zero value otherwise.
+
+### GetDigestOk
+
+`func (o *DNSRecord) GetDigestOk() (*string, bool)`
+
+GetDigestOk returns a tuple with the Digest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDigest
+
+`func (o *DNSRecord) SetDigest(v string)`
+
+SetDigest sets Digest field to given value.
+
+
+### GetUsage
+
+`func (o *DNSRecord) GetUsage() string`
+
+GetUsage returns the Usage field if non-nil, zero value otherwise.
+
+### GetUsageOk
+
+`func (o *DNSRecord) GetUsageOk() (*string, bool)`
+
+GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsage
+
+`func (o *DNSRecord) SetUsage(v string)`
+
+SetUsage sets Usage field to given value.
+
+
+### GetSelector
+
+`func (o *DNSRecord) GetSelector() string`
+
+GetSelector returns the Selector field if non-nil, zero value otherwise.
+
+### GetSelectorOk
+
+`func (o *DNSRecord) GetSelectorOk() (*string, bool)`
+
+GetSelectorOk returns a tuple with the Selector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelector
+
+`func (o *DNSRecord) SetSelector(v string)`
+
+SetSelector sets Selector field to given value.
+
+
+### GetDtype
+
+`func (o *DNSRecord) GetDtype() string`
+
+GetDtype returns the Dtype field if non-nil, zero value otherwise.
+
+### GetDtypeOk
+
+`func (o *DNSRecord) GetDtypeOk() (*string, bool)`
+
+GetDtypeOk returns a tuple with the Dtype field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDtype
+
+`func (o *DNSRecord) SetDtype(v string)`
+
+SetDtype sets Dtype field to given value.
 
 
 
