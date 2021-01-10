@@ -18,19 +18,21 @@ import (
 // HTTPForward struct for HTTPForward
 type HTTPForward struct {
 	// The subdomain this forward applies to, without the domain part.  For instance, `www` in the context of the `example.com` domain signifies a forward for `www.example.com`. 
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 	// Whether to enable frame forwarding using an iframe embed. **NOT** recommended for a variety of reasons.
 	Frame *bool `json:"frame,omitempty"`
 	// The URL to forward to. Must include scheme, e.g. `https://` or `ftp://`.
-	Url *string `json:"url,omitempty"`
+	Url string `json:"url"`
 }
 
 // NewHTTPForward instantiates a new HTTPForward object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHTTPForward() *HTTPForward {
+func NewHTTPForward(host string, url string, ) *HTTPForward {
 	this := HTTPForward{}
+	this.Host = host
+	this.Url = url
 	return &this
 }
 
@@ -42,36 +44,28 @@ func NewHTTPForwardWithDefaults() *HTTPForward {
 	return &this
 }
 
-// GetHost returns the Host field value if set, zero value otherwise.
+// GetHost returns the Host field value
 func (o *HTTPForward) GetHost() string {
-	if o == nil || o.Host == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
-	return *o.Host
+
+	return o.Host
 }
 
-// GetHostOk returns a tuple with the Host field value if set, nil otherwise
+// GetHostOk returns a tuple with the Host field value
 // and a boolean to check if the value has been set.
 func (o *HTTPForward) GetHostOk() (*string, bool) {
-	if o == nil || o.Host == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Host, true
+	return &o.Host, true
 }
 
-// HasHost returns a boolean if a field has been set.
-func (o *HTTPForward) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHost gets a reference to the given string and assigns it to the Host field.
+// SetHost sets field value
 func (o *HTTPForward) SetHost(v string) {
-	o.Host = &v
+	o.Host = v
 }
 
 // GetFrame returns the Frame field value if set, zero value otherwise.
@@ -106,47 +100,39 @@ func (o *HTTPForward) SetFrame(v bool) {
 	o.Frame = &v
 }
 
-// GetUrl returns the Url field value if set, zero value otherwise.
+// GetUrl returns the Url field value
 func (o *HTTPForward) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil  {
 		var ret string
 		return ret
 	}
-	return *o.Url
+
+	return o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
+// GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *HTTPForward) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Url, true
+	return &o.Url, true
 }
 
-// HasUrl returns a boolean if a field has been set.
-func (o *HTTPForward) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrl gets a reference to the given string and assigns it to the Url field.
+// SetUrl sets field value
 func (o *HTTPForward) SetUrl(v string) {
-	o.Url = &v
+	o.Url = v
 }
 
 func (o HTTPForward) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Host != nil {
+	if true {
 		toSerialize["host"] = o.Host
 	}
 	if o.Frame != nil {
 		toSerialize["frame"] = o.Frame
 	}
-	if o.Url != nil {
+	if true {
 		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)

@@ -342,6 +342,11 @@ paths:
         schema:
           type: integer
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPForward'
       responses:
         "201":
           description: Successful operation
@@ -795,6 +800,10 @@ components:
             or `ftp://`.
           example: https://www.example.com
           type: string
+      required:
+      - host
+      - url
+      type: object
     Invoice:
       example:
         amount: 120

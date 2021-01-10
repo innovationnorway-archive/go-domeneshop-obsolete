@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | Pointer to **string** | The subdomain this forward applies to, without the domain part.  For instance, &#x60;www&#x60; in the context of the &#x60;example.com&#x60; domain signifies a forward for &#x60;www.example.com&#x60;.  | [optional] 
+**Host** | **string** | The subdomain this forward applies to, without the domain part.  For instance, &#x60;www&#x60; in the context of the &#x60;example.com&#x60; domain signifies a forward for &#x60;www.example.com&#x60;.  | 
 **Frame** | Pointer to **bool** | Whether to enable frame forwarding using an iframe embed. **NOT** recommended for a variety of reasons. | [optional] 
-**Url** | Pointer to **string** | The URL to forward to. Must include scheme, e.g. &#x60;https://&#x60; or &#x60;ftp://&#x60;. | [optional] 
+**Url** | **string** | The URL to forward to. Must include scheme, e.g. &#x60;https://&#x60; or &#x60;ftp://&#x60;. | 
 
 ## Methods
 
 ### NewHTTPForward
 
-`func NewHTTPForward() *HTTPForward`
+`func NewHTTPForward(host string, url string, ) *HTTPForward`
 
 NewHTTPForward instantiates a new HTTPForward object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetHost sets Host field to given value.
 
-### HasHost
-
-`func (o *HTTPForward) HasHost() bool`
-
-HasHost returns a boolean if a field has been set.
 
 ### GetFrame
 
@@ -96,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
-### HasUrl
-
-`func (o *HTTPForward) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

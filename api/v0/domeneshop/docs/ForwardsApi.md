@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateForward
 
-> CreateForward(ctx, domainId).Execute()
+> CreateForward(ctx, domainId).HTTPForward(hTTPForward).Execute()
 
 Add forward
 
@@ -34,10 +34,11 @@ import (
 
 func main() {
     domainId := int32(56) // int32 | ID of the domain
+    hTTPForward := *openapiclient.NewHTTPForward("@", "https://www.example.com") // HTTPForward |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ForwardsApi.CreateForward(context.Background(), domainId).Execute()
+    resp, r, err := api_client.ForwardsApi.CreateForward(context.Background(), domainId).HTTPForward(hTTPForward).Execute()
     if err.Error() != "" {
         fmt.Fprintf(os.Stderr, "Error when calling `ForwardsApi.CreateForward``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Other parameters are passed through a pointer to a apiCreateForwardRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **hTTPForward** | [**HTTPForward**](HTTPForward.md) |  | 
 
 ### Return type
 
@@ -72,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -313,7 +315,7 @@ import (
 func main() {
     domainId := int32(56) // int32 | ID of the domain
     host := "www" // string | Subdomain of the forward, `@` for the root domain
-    hTTPForward := *openapiclient.NewHTTPForward() // HTTPForward |  (optional)
+    hTTPForward := *openapiclient.NewHTTPForward("@", "https://www.example.com") // HTTPForward |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

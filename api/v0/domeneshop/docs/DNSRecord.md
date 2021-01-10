@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewDNSRecord
 
-`func NewDNSRecord(id int32, host string, type_ string, data string, ) *DNSRecord`
+`func NewDNSRecord(id int32, host string, recordType string, data string, ) *DNSRecord`
 
 NewDNSRecord instantiates a new DNSRecord object
 This constructor will assign default values to properties that have it defined,

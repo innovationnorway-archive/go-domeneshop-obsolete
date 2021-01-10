@@ -52,13 +52,13 @@ type DNSRecord struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNSRecord(id int32, host string, type_ string, data string, ) *DNSRecord {
+func NewDNSRecord(id int32, host string, recordType string, data string, ) *DNSRecord {
 	this := DNSRecord{}
 	this.Id = id
 	this.Host = host
 	var ttl int32 = 3600
 	this.Ttl = &ttl
-	this.Type = type_
+	this.Type = recordType
 	this.Data = data
 	return &this
 }

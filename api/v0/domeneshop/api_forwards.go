@@ -32,8 +32,13 @@ type ApiCreateForwardRequest struct {
 	ctx _context.Context
 	ApiService *ForwardsApiService
 	domainId int32
+	hTTPForward *HTTPForward
 }
 
+func (r ApiCreateForwardRequest) HTTPForward(hTTPForward HTTPForward) ApiCreateForwardRequest {
+	r.hTTPForward = &hTTPForward
+	return r
+}
 
 func (r ApiCreateForwardRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
 	return r.ApiService.CreateForwardExecute(r)
@@ -85,7 +90,7 @@ func (a *ForwardsApiService) CreateForwardExecute(r ApiCreateForwardRequest) (*_
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -101,6 +106,8 @@ func (a *ForwardsApiService) CreateForwardExecute(r ApiCreateForwardRequest) (*_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.hTTPForward
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		executionError.error = err.Error()
