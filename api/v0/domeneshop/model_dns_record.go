@@ -13,322 +13,562 @@ package domeneshop
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// DNSRecord - struct for DNSRecord
+// DNSRecord struct for DNSRecord
 type DNSRecord struct {
-	A *A
-	AAAA *AAAA
-	ANAME *ANAME
-	CAA *CAA
-	CNAME *CNAME
-	DS *DS
-	MX *MX
-	NS *NS
-	SRV *SRV
-	TLSA *TLSA
-	TXT *TXT
+	// ID of DNS record
+	Id int32 `json:"id"`
+	// The host/subdomain the DNS record applies to
+	Host string `json:"host"`
+	// TTL of DNS record in seconds. Must be a multiple of 60.
+	Ttl *int32 `json:"ttl,omitempty"`
+	Type string `json:"type"`
+	// The value of the record.
+	Data string `json:"data"`
+	// MX/SRV record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed
+	Priority *string `json:"priority,omitempty"`
+	// SRV record weight. Relevant if multiple records have same preference
+	Weight *string `json:"weight,omitempty"`
+	// SRV record port. The port where the service is found.
+	Port *string `json:"port,omitempty"`
+	// CAA record flags.
+	Flags *string `json:"flags,omitempty"`
+	// CAA/DS record tag.
+	Tag *string `json:"tag,omitempty"`
+	// DS record algorithm.
+	Alg *string `json:"alg,omitempty"`
+	// DS record digest type.
+	Digest *string `json:"digest,omitempty"`
+	// TLSA record certificate usage.
+	Usage *string `json:"usage,omitempty"`
+	// TLSA record selector.
+	Selector *string `json:"selector,omitempty"`
+	// TLSA record matching type.
+	Dtype *string `json:"dtype,omitempty"`
 }
 
-// AAsDNSRecord is a convenience function that returns A wrapped in DNSRecord
-func AAsDNSRecord(v *A) DNSRecord {
-	return DNSRecord{ A: v}
+// NewDNSRecord instantiates a new DNSRecord object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDNSRecord(id int32, host string, type_ string, data string, ) *DNSRecord {
+	this := DNSRecord{}
+	this.Id = id
+	this.Host = host
+	var ttl int32 = 3600
+	this.Ttl = &ttl
+	this.Type = type_
+	this.Data = data
+	return &this
 }
 
-// AAAAAsDNSRecord is a convenience function that returns AAAA wrapped in DNSRecord
-func AAAAAsDNSRecord(v *AAAA) DNSRecord {
-	return DNSRecord{ AAAA: v}
+// NewDNSRecordWithDefaults instantiates a new DNSRecord object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDNSRecordWithDefaults() *DNSRecord {
+	this := DNSRecord{}
+	var ttl int32 = 3600
+	this.Ttl = &ttl
+	return &this
 }
 
-// ANAMEAsDNSRecord is a convenience function that returns ANAME wrapped in DNSRecord
-func ANAMEAsDNSRecord(v *ANAME) DNSRecord {
-	return DNSRecord{ ANAME: v}
+// GetId returns the Id field value
+func (o *DNSRecord) GetId() int32 {
+	if o == nil  {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
 }
 
-// CAAAsDNSRecord is a convenience function that returns CAA wrapped in DNSRecord
-func CAAAsDNSRecord(v *CAA) DNSRecord {
-	return DNSRecord{ CAA: v}
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetIdOk() (*int32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
 }
 
-// CNAMEAsDNSRecord is a convenience function that returns CNAME wrapped in DNSRecord
-func CNAMEAsDNSRecord(v *CNAME) DNSRecord {
-	return DNSRecord{ CNAME: v}
+// SetId sets field value
+func (o *DNSRecord) SetId(v int32) {
+	o.Id = v
 }
 
-// DSAsDNSRecord is a convenience function that returns DS wrapped in DNSRecord
-func DSAsDNSRecord(v *DS) DNSRecord {
-	return DNSRecord{ DS: v}
+// GetHost returns the Host field value
+func (o *DNSRecord) GetHost() string {
+	if o == nil  {
+		var ret string
+		return ret
+	}
+
+	return o.Host
 }
 
-// MXAsDNSRecord is a convenience function that returns MX wrapped in DNSRecord
-func MXAsDNSRecord(v *MX) DNSRecord {
-	return DNSRecord{ MX: v}
+// GetHostOk returns a tuple with the Host field value
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetHostOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Host, true
 }
 
-// NSAsDNSRecord is a convenience function that returns NS wrapped in DNSRecord
-func NSAsDNSRecord(v *NS) DNSRecord {
-	return DNSRecord{ NS: v}
+// SetHost sets field value
+func (o *DNSRecord) SetHost(v string) {
+	o.Host = v
 }
 
-// SRVAsDNSRecord is a convenience function that returns SRV wrapped in DNSRecord
-func SRVAsDNSRecord(v *SRV) DNSRecord {
-	return DNSRecord{ SRV: v}
+// GetTtl returns the Ttl field value if set, zero value otherwise.
+func (o *DNSRecord) GetTtl() int32 {
+	if o == nil || o.Ttl == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Ttl
 }
 
-// TLSAAsDNSRecord is a convenience function that returns TLSA wrapped in DNSRecord
-func TLSAAsDNSRecord(v *TLSA) DNSRecord {
-	return DNSRecord{ TLSA: v}
+// GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetTtlOk() (*int32, bool) {
+	if o == nil || o.Ttl == nil {
+		return nil, false
+	}
+	return o.Ttl, true
 }
 
-// TXTAsDNSRecord is a convenience function that returns TXT wrapped in DNSRecord
-func TXTAsDNSRecord(v *TXT) DNSRecord {
-	return DNSRecord{ TXT: v}
+// HasTtl returns a boolean if a field has been set.
+func (o *DNSRecord) HasTtl() bool {
+	if o != nil && o.Ttl != nil {
+		return true
+	}
+
+	return false
 }
 
-
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *DNSRecord) UnmarshalJSON(data []byte) error {
-	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = json.Unmarshal(data, &jsonDict)
-	if err != nil {
-		return fmt.Errorf("Failed to unmarshal JSON into map for the discrimintor lookup.")
-	}
-
-	// check if the discriminator value is 'A'
-	if jsonDict["type"] == "A" {
-		// try to unmarshal JSON data into A
-		err = json.Unmarshal(data, &dst.A)
-		if err == nil {
-			return nil // data stored in dst.A, return on the first match
-		} else {
-			dst.A = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as A: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'AAAA'
-	if jsonDict["type"] == "AAAA" {
-		// try to unmarshal JSON data into AAAA
-		err = json.Unmarshal(data, &dst.AAAA)
-		if err == nil {
-			return nil // data stored in dst.AAAA, return on the first match
-		} else {
-			dst.AAAA = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as AAAA: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ANAME'
-	if jsonDict["type"] == "ANAME" {
-		// try to unmarshal JSON data into ANAME
-		err = json.Unmarshal(data, &dst.ANAME)
-		if err == nil {
-			return nil // data stored in dst.ANAME, return on the first match
-		} else {
-			dst.ANAME = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as ANAME: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'CAA'
-	if jsonDict["type"] == "CAA" {
-		// try to unmarshal JSON data into CAA
-		err = json.Unmarshal(data, &dst.CAA)
-		if err == nil {
-			return nil // data stored in dst.CAA, return on the first match
-		} else {
-			dst.CAA = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as CAA: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'CNAME'
-	if jsonDict["type"] == "CNAME" {
-		// try to unmarshal JSON data into CNAME
-		err = json.Unmarshal(data, &dst.CNAME)
-		if err == nil {
-			return nil // data stored in dst.CNAME, return on the first match
-		} else {
-			dst.CNAME = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as CNAME: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'DS'
-	if jsonDict["type"] == "DS" {
-		// try to unmarshal JSON data into DS
-		err = json.Unmarshal(data, &dst.DS)
-		if err == nil {
-			return nil // data stored in dst.DS, return on the first match
-		} else {
-			dst.DS = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as DS: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'MX'
-	if jsonDict["type"] == "MX" {
-		// try to unmarshal JSON data into MX
-		err = json.Unmarshal(data, &dst.MX)
-		if err == nil {
-			return nil // data stored in dst.MX, return on the first match
-		} else {
-			dst.MX = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as MX: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'NS'
-	if jsonDict["type"] == "NS" {
-		// try to unmarshal JSON data into NS
-		err = json.Unmarshal(data, &dst.NS)
-		if err == nil {
-			return nil // data stored in dst.NS, return on the first match
-		} else {
-			dst.NS = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as NS: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'SRV'
-	if jsonDict["type"] == "SRV" {
-		// try to unmarshal JSON data into SRV
-		err = json.Unmarshal(data, &dst.SRV)
-		if err == nil {
-			return nil // data stored in dst.SRV, return on the first match
-		} else {
-			dst.SRV = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as SRV: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'TLSA'
-	if jsonDict["type"] == "TLSA" {
-		// try to unmarshal JSON data into TLSA
-		err = json.Unmarshal(data, &dst.TLSA)
-		if err == nil {
-			return nil // data stored in dst.TLSA, return on the first match
-		} else {
-			dst.TLSA = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as TLSA: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'TXT'
-	if jsonDict["type"] == "TXT" {
-		// try to unmarshal JSON data into TXT
-		err = json.Unmarshal(data, &dst.TXT)
-		if err == nil {
-			return nil // data stored in dst.TXT, return on the first match
-		} else {
-			dst.TXT = nil
-			return fmt.Errorf("Failed to unmarshal DNSRecord as TXT: %s", err.Error())
-		}
-	}
-
-	return nil
+// SetTtl gets a reference to the given int32 and assigns it to the Ttl field.
+func (o *DNSRecord) SetTtl(v int32) {
+	o.Ttl = &v
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src DNSRecord) MarshalJSON() ([]byte, error) {
-	if src.A != nil {
-		return json.Marshal(&src.A)
+// GetType returns the Type field value
+func (o *DNSRecord) GetType() string {
+	if o == nil  {
+		var ret string
+		return ret
 	}
 
-	if src.AAAA != nil {
-		return json.Marshal(&src.AAAA)
-	}
-
-	if src.ANAME != nil {
-		return json.Marshal(&src.ANAME)
-	}
-
-	if src.CAA != nil {
-		return json.Marshal(&src.CAA)
-	}
-
-	if src.CNAME != nil {
-		return json.Marshal(&src.CNAME)
-	}
-
-	if src.DS != nil {
-		return json.Marshal(&src.DS)
-	}
-
-	if src.MX != nil {
-		return json.Marshal(&src.MX)
-	}
-
-	if src.NS != nil {
-		return json.Marshal(&src.NS)
-	}
-
-	if src.SRV != nil {
-		return json.Marshal(&src.SRV)
-	}
-
-	if src.TLSA != nil {
-		return json.Marshal(&src.TLSA)
-	}
-
-	if src.TXT != nil {
-		return json.Marshal(&src.TXT)
-	}
-
-	return nil, nil // no data in oneOf schemas
+	return o.Type
 }
 
-// Get the actual instance
-func (obj *DNSRecord) GetActualInstance() (interface{}) {
-	if obj.A != nil {
-		return obj.A
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *DNSRecord) SetType(v string) {
+	o.Type = v
+}
+
+// GetData returns the Data field value
+func (o *DNSRecord) GetData() string {
+	if o == nil  {
+		var ret string
+		return ret
 	}
 
-	if obj.AAAA != nil {
-		return obj.AAAA
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetDataOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *DNSRecord) SetData(v string) {
+	o.Data = v
+}
+
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *DNSRecord) GetPriority() string {
+	if o == nil || o.Priority == nil {
+		var ret string
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetPriorityOk() (*string, bool) {
+	if o == nil || o.Priority == nil {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *DNSRecord) HasPriority() bool {
+	if o != nil && o.Priority != nil {
+		return true
 	}
 
-	if obj.ANAME != nil {
-		return obj.ANAME
+	return false
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *DNSRecord) SetPriority(v string) {
+	o.Priority = &v
+}
+
+// GetWeight returns the Weight field value if set, zero value otherwise.
+func (o *DNSRecord) GetWeight() string {
+	if o == nil || o.Weight == nil {
+		var ret string
+		return ret
+	}
+	return *o.Weight
+}
+
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetWeightOk() (*string, bool) {
+	if o == nil || o.Weight == nil {
+		return nil, false
+	}
+	return o.Weight, true
+}
+
+// HasWeight returns a boolean if a field has been set.
+func (o *DNSRecord) HasWeight() bool {
+	if o != nil && o.Weight != nil {
+		return true
 	}
 
-	if obj.CAA != nil {
-		return obj.CAA
+	return false
+}
+
+// SetWeight gets a reference to the given string and assigns it to the Weight field.
+func (o *DNSRecord) SetWeight(v string) {
+	o.Weight = &v
+}
+
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *DNSRecord) GetPort() string {
+	if o == nil || o.Port == nil {
+		var ret string
+		return ret
+	}
+	return *o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetPortOk() (*string, bool) {
+	if o == nil || o.Port == nil {
+		return nil, false
+	}
+	return o.Port, true
+}
+
+// HasPort returns a boolean if a field has been set.
+func (o *DNSRecord) HasPort() bool {
+	if o != nil && o.Port != nil {
+		return true
 	}
 
-	if obj.CNAME != nil {
-		return obj.CNAME
+	return false
+}
+
+// SetPort gets a reference to the given string and assigns it to the Port field.
+func (o *DNSRecord) SetPort(v string) {
+	o.Port = &v
+}
+
+// GetFlags returns the Flags field value if set, zero value otherwise.
+func (o *DNSRecord) GetFlags() string {
+	if o == nil || o.Flags == nil {
+		var ret string
+		return ret
+	}
+	return *o.Flags
+}
+
+// GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetFlagsOk() (*string, bool) {
+	if o == nil || o.Flags == nil {
+		return nil, false
+	}
+	return o.Flags, true
+}
+
+// HasFlags returns a boolean if a field has been set.
+func (o *DNSRecord) HasFlags() bool {
+	if o != nil && o.Flags != nil {
+		return true
 	}
 
-	if obj.DS != nil {
-		return obj.DS
+	return false
+}
+
+// SetFlags gets a reference to the given string and assigns it to the Flags field.
+func (o *DNSRecord) SetFlags(v string) {
+	o.Flags = &v
+}
+
+// GetTag returns the Tag field value if set, zero value otherwise.
+func (o *DNSRecord) GetTag() string {
+	if o == nil || o.Tag == nil {
+		var ret string
+		return ret
+	}
+	return *o.Tag
+}
+
+// GetTagOk returns a tuple with the Tag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetTagOk() (*string, bool) {
+	if o == nil || o.Tag == nil {
+		return nil, false
+	}
+	return o.Tag, true
+}
+
+// HasTag returns a boolean if a field has been set.
+func (o *DNSRecord) HasTag() bool {
+	if o != nil && o.Tag != nil {
+		return true
 	}
 
-	if obj.MX != nil {
-		return obj.MX
+	return false
+}
+
+// SetTag gets a reference to the given string and assigns it to the Tag field.
+func (o *DNSRecord) SetTag(v string) {
+	o.Tag = &v
+}
+
+// GetAlg returns the Alg field value if set, zero value otherwise.
+func (o *DNSRecord) GetAlg() string {
+	if o == nil || o.Alg == nil {
+		var ret string
+		return ret
+	}
+	return *o.Alg
+}
+
+// GetAlgOk returns a tuple with the Alg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetAlgOk() (*string, bool) {
+	if o == nil || o.Alg == nil {
+		return nil, false
+	}
+	return o.Alg, true
+}
+
+// HasAlg returns a boolean if a field has been set.
+func (o *DNSRecord) HasAlg() bool {
+	if o != nil && o.Alg != nil {
+		return true
 	}
 
-	if obj.NS != nil {
-		return obj.NS
+	return false
+}
+
+// SetAlg gets a reference to the given string and assigns it to the Alg field.
+func (o *DNSRecord) SetAlg(v string) {
+	o.Alg = &v
+}
+
+// GetDigest returns the Digest field value if set, zero value otherwise.
+func (o *DNSRecord) GetDigest() string {
+	if o == nil || o.Digest == nil {
+		var ret string
+		return ret
+	}
+	return *o.Digest
+}
+
+// GetDigestOk returns a tuple with the Digest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetDigestOk() (*string, bool) {
+	if o == nil || o.Digest == nil {
+		return nil, false
+	}
+	return o.Digest, true
+}
+
+// HasDigest returns a boolean if a field has been set.
+func (o *DNSRecord) HasDigest() bool {
+	if o != nil && o.Digest != nil {
+		return true
 	}
 
-	if obj.SRV != nil {
-		return obj.SRV
+	return false
+}
+
+// SetDigest gets a reference to the given string and assigns it to the Digest field.
+func (o *DNSRecord) SetDigest(v string) {
+	o.Digest = &v
+}
+
+// GetUsage returns the Usage field value if set, zero value otherwise.
+func (o *DNSRecord) GetUsage() string {
+	if o == nil || o.Usage == nil {
+		var ret string
+		return ret
+	}
+	return *o.Usage
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetUsageOk() (*string, bool) {
+	if o == nil || o.Usage == nil {
+		return nil, false
+	}
+	return o.Usage, true
+}
+
+// HasUsage returns a boolean if a field has been set.
+func (o *DNSRecord) HasUsage() bool {
+	if o != nil && o.Usage != nil {
+		return true
 	}
 
-	if obj.TLSA != nil {
-		return obj.TLSA
+	return false
+}
+
+// SetUsage gets a reference to the given string and assigns it to the Usage field.
+func (o *DNSRecord) SetUsage(v string) {
+	o.Usage = &v
+}
+
+// GetSelector returns the Selector field value if set, zero value otherwise.
+func (o *DNSRecord) GetSelector() string {
+	if o == nil || o.Selector == nil {
+		var ret string
+		return ret
+	}
+	return *o.Selector
+}
+
+// GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetSelectorOk() (*string, bool) {
+	if o == nil || o.Selector == nil {
+		return nil, false
+	}
+	return o.Selector, true
+}
+
+// HasSelector returns a boolean if a field has been set.
+func (o *DNSRecord) HasSelector() bool {
+	if o != nil && o.Selector != nil {
+		return true
 	}
 
-	if obj.TXT != nil {
-		return obj.TXT
+	return false
+}
+
+// SetSelector gets a reference to the given string and assigns it to the Selector field.
+func (o *DNSRecord) SetSelector(v string) {
+	o.Selector = &v
+}
+
+// GetDtype returns the Dtype field value if set, zero value otherwise.
+func (o *DNSRecord) GetDtype() string {
+	if o == nil || o.Dtype == nil {
+		var ret string
+		return ret
+	}
+	return *o.Dtype
+}
+
+// GetDtypeOk returns a tuple with the Dtype field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSRecord) GetDtypeOk() (*string, bool) {
+	if o == nil || o.Dtype == nil {
+		return nil, false
+	}
+	return o.Dtype, true
+}
+
+// HasDtype returns a boolean if a field has been set.
+func (o *DNSRecord) HasDtype() bool {
+	if o != nil && o.Dtype != nil {
+		return true
 	}
 
-	// all schemas are nil
-	return nil
+	return false
+}
+
+// SetDtype gets a reference to the given string and assigns it to the Dtype field.
+func (o *DNSRecord) SetDtype(v string) {
+	o.Dtype = &v
+}
+
+func (o DNSRecord) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["host"] = o.Host
+	}
+	if o.Ttl != nil {
+		toSerialize["ttl"] = o.Ttl
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Priority != nil {
+		toSerialize["priority"] = o.Priority
+	}
+	if o.Weight != nil {
+		toSerialize["weight"] = o.Weight
+	}
+	if o.Port != nil {
+		toSerialize["port"] = o.Port
+	}
+	if o.Flags != nil {
+		toSerialize["flags"] = o.Flags
+	}
+	if o.Tag != nil {
+		toSerialize["tag"] = o.Tag
+	}
+	if o.Alg != nil {
+		toSerialize["alg"] = o.Alg
+	}
+	if o.Digest != nil {
+		toSerialize["digest"] = o.Digest
+	}
+	if o.Usage != nil {
+		toSerialize["usage"] = o.Usage
+	}
+	if o.Selector != nil {
+		toSerialize["selector"] = o.Selector
+	}
+	if o.Dtype != nil {
+		toSerialize["dtype"] = o.Dtype
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableDNSRecord struct {

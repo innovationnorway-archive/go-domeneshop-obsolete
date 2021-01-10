@@ -9,22 +9,22 @@ Name | Type | Description | Notes
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
 **Data** | **string** | The value of the record. | 
-**Priority** | **string** | SRV record priority, also known as preference. Lower values are usually preferred first | 
-**Weight** | **string** | SRV record weight. Relevant if multiple records have same preference | 
-**Port** | **string** | SRV record port. The port where the service is found. | 
-**Flags** | **string** | CAA record flags. | 
-**Tag** | **string** | DS record tag. | 
-**Alg** | **string** | DS record algorithm. | 
-**Digest** | **string** | DS record digest type. | 
-**Usage** | **string** | TLSA record certificate usage. | 
-**Selector** | **string** | TLSA record selector. | 
-**Dtype** | **string** | TLSA record matching type. | 
+**Priority** | Pointer to **string** | MX/SRV record priority, also known as preference. Lower values are usually preferred first, but this is not guaranteed | [optional] 
+**Weight** | Pointer to **string** | SRV record weight. Relevant if multiple records have same preference | [optional] 
+**Port** | Pointer to **string** | SRV record port. The port where the service is found. | [optional] 
+**Flags** | Pointer to **string** | CAA record flags. | [optional] 
+**Tag** | Pointer to **string** | CAA/DS record tag. | [optional] 
+**Alg** | Pointer to **string** | DS record algorithm. | [optional] 
+**Digest** | Pointer to **string** | DS record digest type. | [optional] 
+**Usage** | Pointer to **string** | TLSA record certificate usage. | [optional] 
+**Selector** | Pointer to **string** | TLSA record selector. | [optional] 
+**Dtype** | Pointer to **string** | TLSA record matching type. | [optional] 
 
 ## Methods
 
 ### NewDNSRecord
 
-`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, flags string, tag string, alg string, digest string, usage string, selector string, dtype string, ) *DNSRecord`
+`func NewDNSRecord(id int32, host string, type_ string, data string, ) *DNSRecord`
 
 NewDNSRecord instantiates a new DNSRecord object
 This constructor will assign default values to properties that have it defined,
@@ -163,6 +163,11 @@ and a boolean to check if the value has been set.
 
 SetPriority sets Priority field to given value.
 
+### HasPriority
+
+`func (o *DNSRecord) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetWeight
 
@@ -183,6 +188,11 @@ and a boolean to check if the value has been set.
 
 SetWeight sets Weight field to given value.
 
+### HasWeight
+
+`func (o *DNSRecord) HasWeight() bool`
+
+HasWeight returns a boolean if a field has been set.
 
 ### GetPort
 
@@ -203,6 +213,11 @@ and a boolean to check if the value has been set.
 
 SetPort sets Port field to given value.
 
+### HasPort
+
+`func (o *DNSRecord) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
 
 ### GetFlags
 
@@ -223,6 +238,11 @@ and a boolean to check if the value has been set.
 
 SetFlags sets Flags field to given value.
 
+### HasFlags
+
+`func (o *DNSRecord) HasFlags() bool`
+
+HasFlags returns a boolean if a field has been set.
 
 ### GetTag
 
@@ -243,6 +263,11 @@ and a boolean to check if the value has been set.
 
 SetTag sets Tag field to given value.
 
+### HasTag
+
+`func (o *DNSRecord) HasTag() bool`
+
+HasTag returns a boolean if a field has been set.
 
 ### GetAlg
 
@@ -263,6 +288,11 @@ and a boolean to check if the value has been set.
 
 SetAlg sets Alg field to given value.
 
+### HasAlg
+
+`func (o *DNSRecord) HasAlg() bool`
+
+HasAlg returns a boolean if a field has been set.
 
 ### GetDigest
 
@@ -283,6 +313,11 @@ and a boolean to check if the value has been set.
 
 SetDigest sets Digest field to given value.
 
+### HasDigest
+
+`func (o *DNSRecord) HasDigest() bool`
+
+HasDigest returns a boolean if a field has been set.
 
 ### GetUsage
 
@@ -303,6 +338,11 @@ and a boolean to check if the value has been set.
 
 SetUsage sets Usage field to given value.
 
+### HasUsage
+
+`func (o *DNSRecord) HasUsage() bool`
+
+HasUsage returns a boolean if a field has been set.
 
 ### GetSelector
 
@@ -323,6 +363,11 @@ and a boolean to check if the value has been set.
 
 SetSelector sets Selector field to given value.
 
+### HasSelector
+
+`func (o *DNSRecord) HasSelector() bool`
+
+HasSelector returns a boolean if a field has been set.
 
 ### GetDtype
 
@@ -343,6 +388,11 @@ and a boolean to check if the value has been set.
 
 SetDtype sets Dtype field to given value.
 
+### HasDtype
+
+`func (o *DNSRecord) HasDtype() bool`
+
+HasDtype returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

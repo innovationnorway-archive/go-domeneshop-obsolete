@@ -32,7 +32,7 @@ import (
 
 func main() {
     domainId := int32(56) // int32 | ID of the domain
-    dNSRecord := openapiclient.DNSRecord{A: openapiclient.NewA(int32(1), "@", "Type_example", "Data_example")} // DNSRecord |  (optional)
+    dNSRecord := *openapiclient.NewDNSRecord(int32(1), "@", "Type_example", "Data_example") // DNSRecord |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -315,7 +315,7 @@ import (
 func main() {
     domainId := int32(56) // int32 | ID of the domain
     recordId := int32(56) // int32 | ID of DNS record
-    dNSRecord := openapiclient.DNSRecord{A: openapiclient.NewA(int32(1), "@", "Type_example", "Data_example")} // DNSRecord |  (optional)
+    dNSRecord := *openapiclient.NewDNSRecord(int32(1), "@", "Type_example", "Data_example") // DNSRecord |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
