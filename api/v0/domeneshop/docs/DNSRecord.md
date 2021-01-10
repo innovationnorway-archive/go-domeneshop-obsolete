@@ -12,19 +12,19 @@ Name | Type | Description | Notes
 **Priority** | **string** | SRV record priority, also known as preference. Lower values are usually preferred first | 
 **Weight** | **string** | SRV record weight. Relevant if multiple records have same preference | 
 **Port** | **string** | SRV record port. The port where the service is found. | 
-**Flags** | **int32** | CAA record flags. | 
-**Tag** | **int32** | DS record tag. | 
-**Alg** | **int32** | DS record algorithm. | 
-**Digest** | **int32** | DS record digest type. | 
-**Usage** | **int32** | TLSA record certificate usage. | 
-**Selector** | **int32** | TLSA record selector. | 
-**Dtype** | **int32** | TLSA record matching type. | 
+**Flags** | **string** | CAA record flags. | 
+**Tag** | **string** | DS record tag. | 
+**Alg** | **string** | DS record algorithm. | 
+**Digest** | **string** | DS record digest type. | 
+**Usage** | **string** | TLSA record certificate usage. | 
+**Selector** | **string** | TLSA record selector. | 
+**Dtype** | **string** | TLSA record matching type. | 
 
 ## Methods
 
 ### NewDNSRecord
 
-`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, flags int32, tag int32, alg int32, digest int32, usage int32, selector int32, dtype int32, ) *DNSRecord`
+`func NewDNSRecord(id int32, host string, type_ string, data string, priority string, weight string, port string, flags string, tag string, alg string, digest string, usage string, selector string, dtype string, ) *DNSRecord`
 
 NewDNSRecord instantiates a new DNSRecord object
 This constructor will assign default values to properties that have it defined,
@@ -206,140 +206,140 @@ SetPort sets Port field to given value.
 
 ### GetFlags
 
-`func (o *DNSRecord) GetFlags() int32`
+`func (o *DNSRecord) GetFlags() string`
 
 GetFlags returns the Flags field if non-nil, zero value otherwise.
 
 ### GetFlagsOk
 
-`func (o *DNSRecord) GetFlagsOk() (*int32, bool)`
+`func (o *DNSRecord) GetFlagsOk() (*string, bool)`
 
 GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlags
 
-`func (o *DNSRecord) SetFlags(v int32)`
+`func (o *DNSRecord) SetFlags(v string)`
 
 SetFlags sets Flags field to given value.
 
 
 ### GetTag
 
-`func (o *DNSRecord) GetTag() int32`
+`func (o *DNSRecord) GetTag() string`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *DNSRecord) GetTagOk() (*int32, bool)`
+`func (o *DNSRecord) GetTagOk() (*string, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *DNSRecord) SetTag(v int32)`
+`func (o *DNSRecord) SetTag(v string)`
 
 SetTag sets Tag field to given value.
 
 
 ### GetAlg
 
-`func (o *DNSRecord) GetAlg() int32`
+`func (o *DNSRecord) GetAlg() string`
 
 GetAlg returns the Alg field if non-nil, zero value otherwise.
 
 ### GetAlgOk
 
-`func (o *DNSRecord) GetAlgOk() (*int32, bool)`
+`func (o *DNSRecord) GetAlgOk() (*string, bool)`
 
 GetAlgOk returns a tuple with the Alg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlg
 
-`func (o *DNSRecord) SetAlg(v int32)`
+`func (o *DNSRecord) SetAlg(v string)`
 
 SetAlg sets Alg field to given value.
 
 
 ### GetDigest
 
-`func (o *DNSRecord) GetDigest() int32`
+`func (o *DNSRecord) GetDigest() string`
 
 GetDigest returns the Digest field if non-nil, zero value otherwise.
 
 ### GetDigestOk
 
-`func (o *DNSRecord) GetDigestOk() (*int32, bool)`
+`func (o *DNSRecord) GetDigestOk() (*string, bool)`
 
 GetDigestOk returns a tuple with the Digest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDigest
 
-`func (o *DNSRecord) SetDigest(v int32)`
+`func (o *DNSRecord) SetDigest(v string)`
 
 SetDigest sets Digest field to given value.
 
 
 ### GetUsage
 
-`func (o *DNSRecord) GetUsage() int32`
+`func (o *DNSRecord) GetUsage() string`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *DNSRecord) GetUsageOk() (*int32, bool)`
+`func (o *DNSRecord) GetUsageOk() (*string, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *DNSRecord) SetUsage(v int32)`
+`func (o *DNSRecord) SetUsage(v string)`
 
 SetUsage sets Usage field to given value.
 
 
 ### GetSelector
 
-`func (o *DNSRecord) GetSelector() int32`
+`func (o *DNSRecord) GetSelector() string`
 
 GetSelector returns the Selector field if non-nil, zero value otherwise.
 
 ### GetSelectorOk
 
-`func (o *DNSRecord) GetSelectorOk() (*int32, bool)`
+`func (o *DNSRecord) GetSelectorOk() (*string, bool)`
 
 GetSelectorOk returns a tuple with the Selector field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelector
 
-`func (o *DNSRecord) SetSelector(v int32)`
+`func (o *DNSRecord) SetSelector(v string)`
 
 SetSelector sets Selector field to given value.
 
 
 ### GetDtype
 
-`func (o *DNSRecord) GetDtype() int32`
+`func (o *DNSRecord) GetDtype() string`
 
 GetDtype returns the Dtype field if non-nil, zero value otherwise.
 
 ### GetDtypeOk
 
-`func (o *DNSRecord) GetDtypeOk() (*int32, bool)`
+`func (o *DNSRecord) GetDtypeOk() (*string, bool)`
 
 GetDtypeOk returns a tuple with the Dtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDtype
 
-`func (o *DNSRecord) SetDtype(v int32)`
+`func (o *DNSRecord) SetDtype(v string)`
 
 SetDtype sets Dtype field to given value.
 

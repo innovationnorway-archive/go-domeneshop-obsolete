@@ -21,18 +21,18 @@ type TLSAAllOf struct {
 	// The value of the record.
 	Data string `json:"data"`
 	// TLSA record certificate usage.
-	Usage int32 `json:"usage"`
+	Usage string `json:"usage"`
 	// TLSA record selector.
-	Selector int32 `json:"selector"`
+	Selector string `json:"selector"`
 	// TLSA record matching type.
-	Dtype int32 `json:"dtype"`
+	Dtype string `json:"dtype"`
 }
 
 // NewTLSAAllOf instantiates a new TLSAAllOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTLSAAllOf(type_ string, data string, usage int32, selector int32, dtype int32, ) *TLSAAllOf {
+func NewTLSAAllOf(type_ string, data string, usage string, selector string, dtype string, ) *TLSAAllOf {
 	this := TLSAAllOf{}
 	this.Type = type_
 	this.Data = data
@@ -99,9 +99,9 @@ func (o *TLSAAllOf) SetData(v string) {
 }
 
 // GetUsage returns the Usage field value
-func (o *TLSAAllOf) GetUsage() int32 {
+func (o *TLSAAllOf) GetUsage() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -110,7 +110,7 @@ func (o *TLSAAllOf) GetUsage() int32 {
 
 // GetUsageOk returns a tuple with the Usage field value
 // and a boolean to check if the value has been set.
-func (o *TLSAAllOf) GetUsageOk() (*int32, bool) {
+func (o *TLSAAllOf) GetUsageOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -118,14 +118,14 @@ func (o *TLSAAllOf) GetUsageOk() (*int32, bool) {
 }
 
 // SetUsage sets field value
-func (o *TLSAAllOf) SetUsage(v int32) {
+func (o *TLSAAllOf) SetUsage(v string) {
 	o.Usage = v
 }
 
 // GetSelector returns the Selector field value
-func (o *TLSAAllOf) GetSelector() int32 {
+func (o *TLSAAllOf) GetSelector() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *TLSAAllOf) GetSelector() int32 {
 
 // GetSelectorOk returns a tuple with the Selector field value
 // and a boolean to check if the value has been set.
-func (o *TLSAAllOf) GetSelectorOk() (*int32, bool) {
+func (o *TLSAAllOf) GetSelectorOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -142,14 +142,14 @@ func (o *TLSAAllOf) GetSelectorOk() (*int32, bool) {
 }
 
 // SetSelector sets field value
-func (o *TLSAAllOf) SetSelector(v int32) {
+func (o *TLSAAllOf) SetSelector(v string) {
 	o.Selector = v
 }
 
 // GetDtype returns the Dtype field value
-func (o *TLSAAllOf) GetDtype() int32 {
+func (o *TLSAAllOf) GetDtype() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -158,7 +158,7 @@ func (o *TLSAAllOf) GetDtype() int32 {
 
 // GetDtypeOk returns a tuple with the Dtype field value
 // and a boolean to check if the value has been set.
-func (o *TLSAAllOf) GetDtypeOk() (*int32, bool) {
+func (o *TLSAAllOf) GetDtypeOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *TLSAAllOf) GetDtypeOk() (*int32, bool) {
 }
 
 // SetDtype sets field value
-func (o *TLSAAllOf) SetDtype(v int32) {
+func (o *TLSAAllOf) SetDtype(v string) {
 	o.Dtype = v
 }
 

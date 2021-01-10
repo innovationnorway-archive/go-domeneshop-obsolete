@@ -27,18 +27,18 @@ type DS struct {
 	// The value of the record.
 	Data string `json:"data"`
 	// DS record tag.
-	Tag int32 `json:"tag"`
+	Tag string `json:"tag"`
 	// DS record algorithm.
-	Alg int32 `json:"alg"`
+	Alg string `json:"alg"`
 	// DS record digest type.
-	Digest int32 `json:"digest"`
+	Digest string `json:"digest"`
 }
 
 // NewDS instantiates a new DS object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDS(id int32, host string, type_ string, data string, tag int32, alg int32, digest int32, ) *DS {
+func NewDS(id int32, host string, type_ string, data string, tag string, alg string, digest string, ) *DS {
 	this := DS{}
 	this.Id = id
 	this.Host = host
@@ -191,9 +191,9 @@ func (o *DS) SetData(v string) {
 }
 
 // GetTag returns the Tag field value
-func (o *DS) GetTag() int32 {
+func (o *DS) GetTag() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -202,7 +202,7 @@ func (o *DS) GetTag() int32 {
 
 // GetTagOk returns a tuple with the Tag field value
 // and a boolean to check if the value has been set.
-func (o *DS) GetTagOk() (*int32, bool) {
+func (o *DS) GetTagOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -210,14 +210,14 @@ func (o *DS) GetTagOk() (*int32, bool) {
 }
 
 // SetTag sets field value
-func (o *DS) SetTag(v int32) {
+func (o *DS) SetTag(v string) {
 	o.Tag = v
 }
 
 // GetAlg returns the Alg field value
-func (o *DS) GetAlg() int32 {
+func (o *DS) GetAlg() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -226,7 +226,7 @@ func (o *DS) GetAlg() int32 {
 
 // GetAlgOk returns a tuple with the Alg field value
 // and a boolean to check if the value has been set.
-func (o *DS) GetAlgOk() (*int32, bool) {
+func (o *DS) GetAlgOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -234,14 +234,14 @@ func (o *DS) GetAlgOk() (*int32, bool) {
 }
 
 // SetAlg sets field value
-func (o *DS) SetAlg(v int32) {
+func (o *DS) SetAlg(v string) {
 	o.Alg = v
 }
 
 // GetDigest returns the Digest field value
-func (o *DS) GetDigest() int32 {
+func (o *DS) GetDigest() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -250,7 +250,7 @@ func (o *DS) GetDigest() int32 {
 
 // GetDigestOk returns a tuple with the Digest field value
 // and a boolean to check if the value has been set.
-func (o *DS) GetDigestOk() (*int32, bool) {
+func (o *DS) GetDigestOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -258,7 +258,7 @@ func (o *DS) GetDigestOk() (*int32, bool) {
 }
 
 // SetDigest sets field value
-func (o *DS) SetDigest(v int32) {
+func (o *DS) SetDigest(v string) {
 	o.Digest = v
 }
 

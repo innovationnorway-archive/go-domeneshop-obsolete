@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Data** | **string** | The value of the record. | 
-**Flags** | **int32** | CAA record flags. | 
-**Tag** | **int32** | CAA record tag. | 
+**Flags** | **string** | CAA record flags. | 
+**Tag** | **string** | CAA record tag. | 
 
 ## Methods
 
 ### NewCAAAllOf
 
-`func NewCAAAllOf(type_ string, data string, flags int32, tag int32, ) *CAAAllOf`
+`func NewCAAAllOf(type_ string, data string, flags string, tag string, ) *CAAAllOf`
 
 NewCAAAllOf instantiates a new CAAAllOf object
 This constructor will assign default values to properties that have it defined,
@@ -70,40 +70,40 @@ SetData sets Data field to given value.
 
 ### GetFlags
 
-`func (o *CAAAllOf) GetFlags() int32`
+`func (o *CAAAllOf) GetFlags() string`
 
 GetFlags returns the Flags field if non-nil, zero value otherwise.
 
 ### GetFlagsOk
 
-`func (o *CAAAllOf) GetFlagsOk() (*int32, bool)`
+`func (o *CAAAllOf) GetFlagsOk() (*string, bool)`
 
 GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlags
 
-`func (o *CAAAllOf) SetFlags(v int32)`
+`func (o *CAAAllOf) SetFlags(v string)`
 
 SetFlags sets Flags field to given value.
 
 
 ### GetTag
 
-`func (o *CAAAllOf) GetTag() int32`
+`func (o *CAAAllOf) GetTag() string`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *CAAAllOf) GetTagOk() (*int32, bool)`
+`func (o *CAAAllOf) GetTagOk() (*string, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *CAAAllOf) SetTag(v int32)`
+`func (o *CAAAllOf) SetTag(v string)`
 
 SetTag sets Tag field to given value.
 

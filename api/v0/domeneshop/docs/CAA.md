@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
 **Data** | **string** | The value of the record. | 
-**Flags** | **int32** | CAA record flags. | 
-**Tag** | **int32** | CAA record tag. | 
+**Flags** | **string** | CAA record flags. | 
+**Tag** | **string** | CAA record tag. | 
 
 ## Methods
 
 ### NewCAA
 
-`func NewCAA(id int32, host string, type_ string, data string, flags int32, tag int32, ) *CAA`
+`func NewCAA(id int32, host string, type_ string, data string, flags string, tag string, ) *CAA`
 
 NewCAA instantiates a new CAA object
 This constructor will assign default values to properties that have it defined,
@@ -138,40 +138,40 @@ SetData sets Data field to given value.
 
 ### GetFlags
 
-`func (o *CAA) GetFlags() int32`
+`func (o *CAA) GetFlags() string`
 
 GetFlags returns the Flags field if non-nil, zero value otherwise.
 
 ### GetFlagsOk
 
-`func (o *CAA) GetFlagsOk() (*int32, bool)`
+`func (o *CAA) GetFlagsOk() (*string, bool)`
 
 GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlags
 
-`func (o *CAA) SetFlags(v int32)`
+`func (o *CAA) SetFlags(v string)`
 
 SetFlags sets Flags field to given value.
 
 
 ### GetTag
 
-`func (o *CAA) GetTag() int32`
+`func (o *CAA) GetTag() string`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *CAA) GetTagOk() (*int32, bool)`
+`func (o *CAA) GetTagOk() (*string, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *CAA) SetTag(v int32)`
+`func (o *CAA) SetTag(v string)`
 
 SetTag sets Tag field to given value.
 

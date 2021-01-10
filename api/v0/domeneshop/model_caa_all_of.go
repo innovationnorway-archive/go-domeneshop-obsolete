@@ -21,16 +21,16 @@ type CAAAllOf struct {
 	// The value of the record.
 	Data string `json:"data"`
 	// CAA record flags.
-	Flags int32 `json:"flags"`
+	Flags string `json:"flags"`
 	// CAA record tag.
-	Tag int32 `json:"tag"`
+	Tag string `json:"tag"`
 }
 
 // NewCAAAllOf instantiates a new CAAAllOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCAAAllOf(type_ string, data string, flags int32, tag int32, ) *CAAAllOf {
+func NewCAAAllOf(type_ string, data string, flags string, tag string, ) *CAAAllOf {
 	this := CAAAllOf{}
 	this.Type = type_
 	this.Data = data
@@ -96,9 +96,9 @@ func (o *CAAAllOf) SetData(v string) {
 }
 
 // GetFlags returns the Flags field value
-func (o *CAAAllOf) GetFlags() int32 {
+func (o *CAAAllOf) GetFlags() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *CAAAllOf) GetFlags() int32 {
 
 // GetFlagsOk returns a tuple with the Flags field value
 // and a boolean to check if the value has been set.
-func (o *CAAAllOf) GetFlagsOk() (*int32, bool) {
+func (o *CAAAllOf) GetFlagsOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -115,14 +115,14 @@ func (o *CAAAllOf) GetFlagsOk() (*int32, bool) {
 }
 
 // SetFlags sets field value
-func (o *CAAAllOf) SetFlags(v int32) {
+func (o *CAAAllOf) SetFlags(v string) {
 	o.Flags = v
 }
 
 // GetTag returns the Tag field value
-func (o *CAAAllOf) GetTag() int32 {
+func (o *CAAAllOf) GetTag() string {
 	if o == nil  {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -131,7 +131,7 @@ func (o *CAAAllOf) GetTag() int32 {
 
 // GetTagOk returns a tuple with the Tag field value
 // and a boolean to check if the value has been set.
-func (o *CAAAllOf) GetTagOk() (*int32, bool) {
+func (o *CAAAllOf) GetTagOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *CAAAllOf) GetTagOk() (*int32, bool) {
 }
 
 // SetTag sets field value
-func (o *CAAAllOf) SetTag(v int32) {
+func (o *CAAAllOf) SetTag(v string) {
 	o.Tag = v
 }
 

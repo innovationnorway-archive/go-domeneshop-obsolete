@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Data** | **string** | The value of the record. | 
-**Tag** | **int32** | DS record tag. | 
-**Alg** | **int32** | DS record algorithm. | 
-**Digest** | **int32** | DS record digest type. | 
+**Tag** | **string** | DS record tag. | 
+**Alg** | **string** | DS record algorithm. | 
+**Digest** | **string** | DS record digest type. | 
 
 ## Methods
 
 ### NewDSAllOf
 
-`func NewDSAllOf(type_ string, data string, tag int32, alg int32, digest int32, ) *DSAllOf`
+`func NewDSAllOf(type_ string, data string, tag string, alg string, digest string, ) *DSAllOf`
 
 NewDSAllOf instantiates a new DSAllOf object
 This constructor will assign default values to properties that have it defined,
@@ -71,60 +71,60 @@ SetData sets Data field to given value.
 
 ### GetTag
 
-`func (o *DSAllOf) GetTag() int32`
+`func (o *DSAllOf) GetTag() string`
 
 GetTag returns the Tag field if non-nil, zero value otherwise.
 
 ### GetTagOk
 
-`func (o *DSAllOf) GetTagOk() (*int32, bool)`
+`func (o *DSAllOf) GetTagOk() (*string, bool)`
 
 GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTag
 
-`func (o *DSAllOf) SetTag(v int32)`
+`func (o *DSAllOf) SetTag(v string)`
 
 SetTag sets Tag field to given value.
 
 
 ### GetAlg
 
-`func (o *DSAllOf) GetAlg() int32`
+`func (o *DSAllOf) GetAlg() string`
 
 GetAlg returns the Alg field if non-nil, zero value otherwise.
 
 ### GetAlgOk
 
-`func (o *DSAllOf) GetAlgOk() (*int32, bool)`
+`func (o *DSAllOf) GetAlgOk() (*string, bool)`
 
 GetAlgOk returns a tuple with the Alg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlg
 
-`func (o *DSAllOf) SetAlg(v int32)`
+`func (o *DSAllOf) SetAlg(v string)`
 
 SetAlg sets Alg field to given value.
 
 
 ### GetDigest
 
-`func (o *DSAllOf) GetDigest() int32`
+`func (o *DSAllOf) GetDigest() string`
 
 GetDigest returns the Digest field if non-nil, zero value otherwise.
 
 ### GetDigestOk
 
-`func (o *DSAllOf) GetDigestOk() (*int32, bool)`
+`func (o *DSAllOf) GetDigestOk() (*string, bool)`
 
 GetDigestOk returns a tuple with the Digest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDigest
 
-`func (o *DSAllOf) SetDigest(v int32)`
+`func (o *DSAllOf) SetDigest(v string)`
 
 SetDigest sets Digest field to given value.
 

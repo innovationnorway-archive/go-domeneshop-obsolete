@@ -9,15 +9,15 @@ Name | Type | Description | Notes
 **Ttl** | Pointer to **int32** | TTL of DNS record in seconds. Must be a multiple of 60. | [optional] [default to 3600]
 **Type** | **string** |  | 
 **Data** | **string** | The value of the record. | 
-**Usage** | **int32** | TLSA record certificate usage. | 
-**Selector** | **int32** | TLSA record selector. | 
-**Dtype** | **int32** | TLSA record matching type. | 
+**Usage** | **string** | TLSA record certificate usage. | 
+**Selector** | **string** | TLSA record selector. | 
+**Dtype** | **string** | TLSA record matching type. | 
 
 ## Methods
 
 ### NewTLSA
 
-`func NewTLSA(id int32, host string, type_ string, data string, usage int32, selector int32, dtype int32, ) *TLSA`
+`func NewTLSA(id int32, host string, type_ string, data string, usage string, selector string, dtype string, ) *TLSA`
 
 NewTLSA instantiates a new TLSA object
 This constructor will assign default values to properties that have it defined,
@@ -139,60 +139,60 @@ SetData sets Data field to given value.
 
 ### GetUsage
 
-`func (o *TLSA) GetUsage() int32`
+`func (o *TLSA) GetUsage() string`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *TLSA) GetUsageOk() (*int32, bool)`
+`func (o *TLSA) GetUsageOk() (*string, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *TLSA) SetUsage(v int32)`
+`func (o *TLSA) SetUsage(v string)`
 
 SetUsage sets Usage field to given value.
 
 
 ### GetSelector
 
-`func (o *TLSA) GetSelector() int32`
+`func (o *TLSA) GetSelector() string`
 
 GetSelector returns the Selector field if non-nil, zero value otherwise.
 
 ### GetSelectorOk
 
-`func (o *TLSA) GetSelectorOk() (*int32, bool)`
+`func (o *TLSA) GetSelectorOk() (*string, bool)`
 
 GetSelectorOk returns a tuple with the Selector field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelector
 
-`func (o *TLSA) SetSelector(v int32)`
+`func (o *TLSA) SetSelector(v string)`
 
 SetSelector sets Selector field to given value.
 
 
 ### GetDtype
 
-`func (o *TLSA) GetDtype() int32`
+`func (o *TLSA) GetDtype() string`
 
 GetDtype returns the Dtype field if non-nil, zero value otherwise.
 
 ### GetDtypeOk
 
-`func (o *TLSA) GetDtypeOk() (*int32, bool)`
+`func (o *TLSA) GetDtypeOk() (*string, bool)`
 
 GetDtypeOk returns a tuple with the Dtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDtype
 
-`func (o *TLSA) SetDtype(v int32)`
+`func (o *TLSA) SetDtype(v string)`
 
 SetDtype sets Dtype field to given value.
 
